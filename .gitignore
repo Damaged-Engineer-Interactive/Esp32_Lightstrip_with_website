@@ -30,3 +30,7 @@
 *.exe
 *.out
 *.app
+.pio/build/az-delivery-devkit-v4/firmware.map
+.pio/build/az-delivery-devkit-v4/firmware.elf
+.pio/build/az-delivery-devkit-v4/firmware.bin
+.pio/build/az-delivery-devkit-v4/.sconsign311.dblite
