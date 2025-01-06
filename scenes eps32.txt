@@ -1,0 +1,9 @@
+0: twoPhaseWithTraffic
+1: trafficAdvisor
+2: twoPhaseLight (cop lights)
+3: warpcore mode
+4: lighting (a few LEDs lighting up (custom color))
+5: fulLighting (100 custom color)
+6: FUllLightFlash (80 leds in a rythim)
+7: fillsolid (80 custom color)
+default (over 7): offline (all LEDs black (transition also))

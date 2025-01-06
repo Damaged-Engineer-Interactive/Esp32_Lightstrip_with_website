@@ -7,6 +7,8 @@
 #include "NVMData.h"
 #include "DynamicData.h"
 
+int redirectTime = 1;
+
 class WebPage
 {
 private:
@@ -72,7 +74,7 @@ String WebPage::GenHeader(int redirectTime)
   message += "</head>";
   message += "<body>\n";
   message += "\t<p>This will only work until it breaks</p>\n";
-  message += "\t<p>------------V0.1.0---------------</p>\n";
+  message += "\t<p>------------V0.1.1---------------</p>\n";
   return message;
 }
 String WebPage::GenFooter()
@@ -142,19 +144,16 @@ void WebPage::handleChange() {
     }
     else if (server.argName(i) == "scene") {
       DynamicData::get().scene =  server.arg(i).toInt();
-      message = "You got it!";
+      message = "I dont exist";
     }
     else if (server.argName(i) == "red") {
       DynamicData::get().red =  server.arg(i).toInt();
-      message += "red";
     }
     else if (server.argName(i) == "green") {
       DynamicData::get().green =  server.arg(i).toInt();
-      message += "green";
     }
     else if (server.argName(i) == "blue") {
       DynamicData::get().blue =  server.arg(i).toInt();
-      message += "blue";
     }
   }
   if ((netPasswordSet == true)&&(netNameSet == true))
@@ -289,7 +288,8 @@ void WebPage::handleRoot() {
   message += "\t<p>ipaddress:  " + DynamicData::get().ipaddress + "</p>\n";
   message += "\t<p>Thanks for trying my site mate. Have a good day!";
   message += "\t<p>You have to always re set the RGB value (its only placeholders), otherwise it will reset to 0";
-  message += "\t<p>As mandated I have say a fair epilepsie warning for the scenes '6 & 7' ";
+  message += "\t<p>As mandated I have say a fair epilepsie warning for the scene(s) '6' ";
+  message += "\t<p>0:twoPhaseWithTrafficAdv. , 1: trafficAdvisor , 2: twoPhaseLights , 3: warpCoreMode , 4: lighting (few LEDs custom color) , 5: FullLighting (100 LEDs custom color) , 6: FullLightFlash (80 LEDs flashing rythim custom color) , 7: fillSolid (80 LEDs custom color) , >7:offline";
   message += GenFooter();
   server.send(200, "text/html", message);
 }

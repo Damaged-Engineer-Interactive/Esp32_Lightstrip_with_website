@@ -440,23 +440,56 @@ void FullLightFlash() {
     counterhasended = false;
     counterended = true;
     FastLED.show();
-    Serial.println("on");
   } 
   else if (counterended && counterhasended) {
     fill_solid(leds, 100, CRGB::Black);
     counterended = false;
     counterhasended = false;
     FastLED.show();
-    Serial.println("off"); 
   }
 
-  if (secondEndTimer >= 25) {
+  if (secondEndTimer >= 110) {
     counterhasended = true;
     secondEndTimer = 0;
   }
 
   secondEndTimer++;
 
+}
+
+void twoPhaseLightCusomColor() {
+  if(phase1&&counterended){
+    leds[c12-5] = leds[c14-5] = leds[c18-5] = CRGB::Black;
+    leds[c11-5] = leds[c13-5] = leds[c17-5] = CRGB(DynamicData::get().red,DynamicData::get().green,DynamicData::get().blue);
+    phase1 = false;
+    counterended = false;
+    counterhasended = false;
+  }
+  
+  else if(!phase1&&counterended){
+    leds[c11] =  leds[c13]  = leds[c17] =  CRGB(DynamicData::get().red,DynamicData::get().green,DynamicData::get().blue);
+    leds[c12] = leds[c14] = leds[c18] = CRGB::Black;
+    phase1 = true;
+    counterended = false;
+    counterhasended = false;
+  }
+
+  if(counterhasended){
+    leds[c11] = leds[c12] = leds[c13] = leds[c14] = leds[c17] = leds[c18]  = CRGB::Black;
+    leds[c11-5] = leds[c12-5] = leds[c13-5] = leds[c14-5] = leds[c17-5] = leds[c18-5]  = CRGB::Black;
+  }
+
+  FastLED.show(); 
+  endcounter++;
+
+  if(endcounter == 249) {
+    counterhasended = true;
+  }
+
+  if(endcounter >=250) {
+    counterended = true;
+    endcounter = 0;
+  }
 }
 
 void fillSolid80() {
@@ -481,6 +514,7 @@ void loop() {
   webPage.loop();
   if(oldScene != DynamicData::get().scene) {
     offline();
+    
   }
   oldScene = DynamicData::get().scene;
   switch (DynamicData::get().scene)
@@ -515,6 +549,9 @@ void loop() {
 
   case 7:
     fillSolid80();
+    break;
+  case 8:
+    twoPhaseLightCusomColor();
     break;
 
   default:
