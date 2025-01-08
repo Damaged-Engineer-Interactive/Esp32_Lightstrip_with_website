@@ -289,7 +289,8 @@ void WebPage::handleRoot() {
   message += "\t<p>Thanks for trying my site mate. Have a good day!";
   message += "\t<p>You have to always re set the RGB value (its only placeholders), otherwise it will reset to 0";
   message += "\t<p>As mandated I have say a fair epilepsie warning for the scene(s) '6' ";
-  message += "\t<p>0:twoPhaseWithTrafficAdv. , 1: trafficAdvisor , 2: twoPhaseLights , 3: warpCoreMode , 4: lighting (few LEDs custom color) , 5: FullLighting (100 LEDs custom color) , 6: FullLightFlash (80 LEDs flashing rythim custom color) , 7: fillSolid (80 LEDs custom color) , >7:offline //transition";
+  message += "\t<p>0:twoPhaseWithTrafficAdv. , 1: trafficAdvisor , 2: twoPhaseLights , 3: warpCoreMode , 4: lighting (few LEDs custom color) , 5: FullLighting (100 LEDs custom color) ,"
+  messsge += "\t<p>6: FullLightFlash (80 LEDs flashing rythim custom color) , 7: fillSolid (80 LEDs custom color) ,8:twoPahseLights ({color} and black alternate) >8:offline //transition";
   message += GenFooter();
   server.send(200, "text/html", message);
 }
