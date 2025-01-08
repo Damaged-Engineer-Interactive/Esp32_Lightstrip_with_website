@@ -113,7 +113,7 @@ void setup() {
   FastLED.addLeds<NEOPIXEL, PIN_WS2812B>(leds, NUM_PIXELS);
   Serial.begin(115200);
 
-  //NVM data or like that as well as webpage smth
+  //gettign dynamic data from the Website (kidna usefull)
   NVMData::get().Init();
   DynamicData::get().Init();
   Serial.println("NetName: "+  NVMData::get().GetNetName());
@@ -301,6 +301,15 @@ void trafficAdvisorWithFLashers() {
 }
 
 void lightStripTrafficAdvisor() {
+
+  if(endcounter == 249) {
+    counterhasended = true;
+  }
+
+  if(endcounter >=250) {
+    counterended = true;
+    endcounter = 0;
+
   if(counter < 2) {
     leds[number] = CRGB::Black;
   }
@@ -341,25 +350,29 @@ void lightStripTrafficAdvisor() {
     leds[fourcounter-2] = CRGB::Black;
   }
 
-  
-  leds[counter] = CRGB::OrangeRed;
-  leds[scndcounter] = CRGB::OrangeRed;
-  leds[counter-1] = CRGB::OrangeRed;
-  leds[scndcounter-1] = CRGB::OrangeRed;
-  leds[thrdcounter] = CRGB::OrangeRed;
-  leds[fourcounter] = CRGB::OrangeRed;
-  leds[sevencounter] = CRGB::OrangeRed;
-  leds[sevencounter-1] = CRGB::OrangeRed;
+  if(counterended) {
+    leds[counter] = CRGB::OrangeRed;
+    leds[scndcounter] = CRGB::OrangeRed;
+    leds[counter-1] = CRGB::OrangeRed;
+    leds[scndcounter-1] = CRGB::OrangeRed;
+    leds[thrdcounter] = CRGB::OrangeRed;
+    leds[fourcounter] = CRGB::OrangeRed;
+    leds[sevencounter] = CRGB::OrangeRed;
+    leds[sevencounter-1] = CRGB::OrangeRed;
+    counterended= false;
+  }
 
 
-
-  delay(8);
   FastLED.show();
-  counter++;
-  scndcounter++;
-  thrdcounter++;
-  fourcounter++;
-  sevencounter++;
+  endcounter++;
+  if(counterhasended) {
+    counter++;
+    scndcounter++;
+    thrdcounter++;
+    fourcounter++;
+    sevencounter++;
+    counterhaseded = false;
+	}
 
   if(fourcounter >= 143){
     leds[fourcounter-1] = CRGB::Black;
@@ -390,14 +403,6 @@ void lightStripTrafficAdvisor() {
     counter = 1;
     leds[dirtybit] = CRGB::Black;
   } 
-}
-
-void debugMultipuleLights(){
-  int colorR = 255; 
-  int colorB = 120;
-  int colorG = 100;
-  leds[20] = leds[40] = leds[60] = leds[80] = leds[100] = leds[120] = CRGB(colorR, colorG, colorB);
-  FastLED.show();
 }
 
 void warpCoreMode() {
@@ -442,7 +447,7 @@ void FullLightFlash() {
     FastLED.show();
   } 
   else if (counterended && counterhasended) {
-    fill_solid(leds, 100, CRGB::Black);
+    fill_solid(leds, 70, CRGB::Black);
     counterended = false;
     counterhasended = false;
     FastLED.show();
