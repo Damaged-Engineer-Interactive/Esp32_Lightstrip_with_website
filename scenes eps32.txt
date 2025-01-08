@@ -6,4 +6,5 @@
 5: fulLighting (100 custom color)
 6: FUllLightFlash (80 leds in a rythim)
 7: fillsolid (80 custom color)
-default (over 7): offline (all LEDs black (transition also))
+8: twoPhaseCustomLights (Alternates between {color} and black
+default (over 8): offline (all LEDs black (transition also))
