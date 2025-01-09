@@ -33,6 +33,7 @@ public:
     int red = 0;
     int green = 0;
     int blue = 0;
+    int waittime = 10;
     boolean connected = false;
 
     String setToZeroReason = "Startup";
