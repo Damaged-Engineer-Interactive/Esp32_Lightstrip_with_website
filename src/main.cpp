@@ -121,7 +121,7 @@ void setup() {
   webPage.Init();
 }
 
-void twoPahseLights() {
+void twoPhaseLights() {
   if(phase1&&counterended){
     leds[c12-5] = leds[c14-5] = leds[c18-5] = CRGB(color1R, color1G, color1B);
     leds[c11-5] = leds[c13-5] = leds[c17-5] = CRGB(color2R,color2G,color2B);
@@ -533,7 +533,7 @@ void loop() {
     break;
 
   case 2:
-    twoPahseLights();
+    twoPhaseLights();
     break;
 
   case 3:
