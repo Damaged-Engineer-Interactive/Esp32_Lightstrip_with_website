@@ -309,7 +309,7 @@ void lightStripTrafficAdvisor() {
   if(endcounter >=250) {
     counterended = true;
     endcounter = 0;
-
+  }
   if(counter < 2) {
     leds[number] = CRGB::Black;
   }
@@ -371,7 +371,7 @@ void lightStripTrafficAdvisor() {
     thrdcounter++;
     fourcounter++;
     sevencounter++;
-    counterhaseded = false;
+    counterhasended = false;
 	}
 
   if(fourcounter >= 143){
@@ -407,9 +407,9 @@ void lightStripTrafficAdvisor() {
 
 void warpCoreMode() {
   leds[counter-1] = CRGB::Black;
-  leds[counter] = CRGB::White;
+  leds[counter] = CRGB(DynamicData::get().red, DynamicData::get().green, DynamicData::get().blue);
   leds[sevencounter-1] = CRGB::Black;
-  leds[sevencounter] = CRGB::White;
+  leds[sevencounter] = CRGB(DynamicData::get().red, DynamicData::get().green, DynamicData::get().blue);
   FastLED.show();
   if(counterended) {
     counter++;
@@ -418,7 +418,7 @@ void warpCoreMode() {
   }
 
   endcounter++;
-  if(endcounter >= 3) {
+  if(endcounter >= DynamicData::get().waittime) {
     counterended = true;
     endcounter = 0;
   }
