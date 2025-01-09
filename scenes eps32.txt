@@ -8,3 +8,5 @@
 7: fillsolid (80 custom color)
 8: twoPhaseCustomLights (Alternates between {color} and black
 default (over 8): offline (all LEDs black (transition also))
+
+// should i keep this?
