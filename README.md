@@ -10,12 +10,12 @@ Feel free to alter the webpages etc to your liking just make sure not to break a
 - Name of the scene (notes) (number of scene on the website)
 
 ## These are the scene we have:
-- Two phase lights with a traffic advisor (blue and red flasher) (going to the right) (0)
-- traffic advisor, without the bleu and red lights (going to the right) (1)
-- two phase lights (red and blue, without the traffic advisor) (2)
-- warp core mode (custom color and wait time) (3)
+- trafficAdvisorWithFLashers ((blue and red flasher) (going to the right)) (0)
+- lightStripTrafficAdvisor (without the flahsers in teh middle this time, going to the right) (1)
+- twoPhaseLights (red and blue, without the traffic advisor) (2)
+- warpCoreMode (custom color and wait time) (3)
 - lighting (makes some LEDs a custom color) (4)
-- Full Lighting (makes 100 LEDs (in a row) a custom color) (5)
+- fullLighting (makes 100 LEDs (in a row) a custom color) (5)
 - FullLightFlash (flashes the light (70 in a row) every 110 executions) (6)
 - FillSolid80 (makes 80 LEDs in a row light up, custom color) (7)
 - twoPhaseLightsCustomColor (makes the two phase lights light up in the color and jump between two spaces (black on unused)) (8)
