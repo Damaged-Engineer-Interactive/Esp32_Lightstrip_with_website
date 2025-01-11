@@ -6,7 +6,10 @@
 These can be found in the src folder and everything is a liberary except the "main.cpp" wich is the main file. 
 Feel free to alter the webpages etc to your liking just make sure not to break anything!
 
-## These are teh scene we have:
+# The way its set up:
+- Name of the scene (notes) (number of scene on the website)
+
+## These are the scene we have:
 - Two phase lights with a traffic advisor (blue and red flasher) (going to the right) (0)
 - traffic advisor, without the bleu and red lights (going to the right) (1)
 - two phase lights (red and blue, without the traffic advisor) (2)
