@@ -519,8 +519,8 @@ void loop() {
   webPage.loop();
   if(oldScene != DynamicData::get().scene) {
     offline();
-    
   }
+  
   oldScene = DynamicData::get().scene;
   switch (DynamicData::get().scene)
   {
