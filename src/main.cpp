@@ -536,7 +536,7 @@ void lighting() {
   FastLED.show();
 }
 
-/* http://192.168.54.205/change?scene=4&red=0&green=0&blue=0 Ref. in README.md && scenes esp32.txt */
+/* http://192.168.54.205/change?scene=5&red=&green=&blue=&waittime=2 Ref. in README.md && scenes esp32.txt */
 void loop() {
   checkNetworkSet();
   webPage.loop();
