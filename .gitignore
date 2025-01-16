@@ -29,6 +29,6 @@
 # Executables
 *.exe
 *.out
-*.app
+*.app 
 .pio
 .pio\*
