@@ -511,13 +511,13 @@ void offline() {
 void RandomFlashingLights() {
   if (counterhasended && !counterended) {
     randomNum = rand() % 144;
-    fill_solid(leds, randomNum, CRGB(DynamicData::get().red, DynamicData::get().green, DynamicData::get().blue));
+    leds[randomNum] = CRGB(DynamicData::get().red, DynamicData::get().green, DynamicData::get().blue);
     counterhasended = false;
     counterended = true;
     FastLED.show();
   } 
   else if (counterended && counterhasended) {
-    fill_solid(leds, randomNum, CRGB::Black);
+    leds[randomNum] = CRGB::Black;
     counterended = false;
     counterhasended = false;
     FastLED.show();
