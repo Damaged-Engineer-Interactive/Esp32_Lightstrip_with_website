@@ -19,4 +19,5 @@ Feel free to alter the webpages etc to your liking just make sure not to break a
 - FullLightFlash (flashes the light (70 in a row) every 110 executions) (6)
 - FillSolid80 (makes 80 LEDs in a row light up, custom color) (7)
 - twoPhaseLightsCustomColor (makes the two phase lights light up in the color and jump between two spaces (black on unused)) (8)
-- everything over 8 if "off" (and that is also used as a transition to avoid LEDs getting stuck on)
+- randomFlashingLights (alternates between random spaces (0-143) and lights them in a preset color. Cusom waittime is also implimented!)
+- everything over 9 if "off" (and that is also used as a transition to avoid LEDs getting stuck on)
