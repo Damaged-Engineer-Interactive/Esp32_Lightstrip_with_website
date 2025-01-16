@@ -1,12 +1,10 @@
 0: twoPhaseWithTraffic
 1: trafficAdvisor
 2: twoPhaseLight (cop lights)
-3: warpcore mode (now custom waittimes (website controlled))
+3: warpcore mode
 4: lighting (a few LEDs lighting up (custom color))
 5: fulLighting (100 custom color)
 6: FUllLightFlash (80 leds in a rythim)
 7: fillsolid (80 custom color)
-8: twoPhaseCustomLights (Alternates between {color} and black)
+8: twoPhaseCustomLights (Alternates between {color} and black
 default (over 8): offline (all LEDs black (transition also))
-
-// should i keep this?
