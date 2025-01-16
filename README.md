@@ -20,4 +20,4 @@ Feel free to alter the webpages etc to your liking just make sure not to break a
 7. FillSolid80 (makes 80 LEDs in a row light up, custom color) 
 8. twoPhaseLightsCustomColor (makes the two phase lights light up in the color and jump between two spaces (black on unused)) 
 9. randomFlashingLights (alternates between random spaces (0-143) and lights them in a preset color. Cusom waittime is also implimented!)
-<(last number of list) everything over 9 if "off" (and that is also used as a transition to avoid LEDs getting stuck on)
+**<(last number of list)** everything over 9 if "off" (and that is also used as a transition to avoid LEDs getting stuck on)
