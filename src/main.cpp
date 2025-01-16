@@ -29,6 +29,7 @@ const int c13 = 120;
 const int c14 = 40;
 const int c17 = 60;
 const int c18 = 100;
+int randomNum = 0;
 int dirtybit = 142;
 int color1R = 0;
 int color1G = 0;
@@ -503,8 +504,30 @@ void fillSolid80() {
 }
 
 void offline() {
-  fill_solid(leds, 143, CRGB::Black);
+  fill_solid(leds, NUM_PIXELS, CRGB::Black);
   FastLED.show();
+}
+
+void RandomFlashingLights() {
+  if (counterhasended && !counterended) {
+    randomNum = rand() % 144;
+    fill_solid(leds, randomNum, CRGB(DynamicData::get().red, DynamicData::get().green, DynamicData::get().blue));
+    counterhasended = false;
+    counterended = true;
+    FastLED.show();
+  } 
+  else if (counterended && counterhasended) {
+    fill_solid(leds, randomNum, CRGB::Black);
+    counterended = false;
+    counterhasended = false;
+    FastLED.show();
+  }
+
+  if (secondEndTimer >= DynamicData::get().waittime) {
+    counterhasended = true;
+    secondEndTimer = 0;
+  }
+  
 }
 
 void lighting() {
@@ -513,14 +536,14 @@ void lighting() {
   FastLED.show();
 }
 
-// http://192.168.54.205/change?scene=4&red=0&green=0&blue=0 use that for changing scene and color (scene 4 (onyl soem spots) and 5 (full lighting) and case 6 (flashing in that color) only so far)
+/* http://192.168.54.205/change?scene=4&red=0&green=0&blue=0 Ref. in README.md && scenes esp32.txt */
 void loop() {
   checkNetworkSet();
   webPage.loop();
   if(oldScene != DynamicData::get().scene) {
     offline();
+    
   }
-  
   oldScene = DynamicData::get().scene;
   switch (DynamicData::get().scene)
   {
@@ -557,6 +580,9 @@ void loop() {
     break;
   case 8:
     twoPhaseLightCusomColor();
+    break;
+  case 9: 
+    RandomFlashingLights();
     break;
 
   default:
