@@ -523,6 +523,8 @@ void RandomFlashingLights() {
     FastLED.show();
   }
 
+  secondEndTimer++;
+
   if (secondEndTimer >= DynamicData::get().waittime) {
     counterhasended = true;
     secondEndTimer = 0;
