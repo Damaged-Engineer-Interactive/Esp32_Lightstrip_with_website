@@ -97,6 +97,8 @@ void setupWiFi()
       else
       {
         Serial.print(".");
+        WiFi.disconnect();
+        delay(100);
         WiFi.begin(NVMData::get().GetNetName().c_str(), NVMData::get().GetNetPassword().c_str());
         DynamicData::get().incErrorCounter("Wifi startup");
         maxWaitForNet = 0;
@@ -538,7 +540,12 @@ void lighting() {
   FastLED.show();
 }
 
-/* http://192.168.54.205/change?scene=5&red=&green=&blue=&waittime=2 Ref. in README.md && scenes esp32.txt */
+void allOn() {
+  fill_solid(leds, NUM_PIXELS, CRGB(DynamicData::get().red, DynamicData::get().green, DynamicData::get().blue));
+  FastLED.show();
+}
+
+/* http://192.168.54.205/change?scene=5&red=0&green=0&blue=0&waittime=2 Ref. in README.md && scenes esp32.txt */
 void loop() {
   checkNetworkSet();
   webPage.loop();
@@ -585,6 +592,10 @@ void loop() {
     break;
   case 9: 
     RandomFlashingLights();
+    break;
+  
+  case 10:
+    allOn();
     break;
 
   default:
