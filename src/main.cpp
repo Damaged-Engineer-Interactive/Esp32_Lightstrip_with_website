@@ -48,6 +48,7 @@ bool phase1 = false;
 //defined smth with these var.
 static const int delayTime_ms = 5;
 static const int SECONDS_1 = 200;
+static const int SECONDS_10 = 2000;
 
 void checkNetworkSet()
 {
@@ -90,7 +91,7 @@ void setupWiFi()
     while (WiFi.status() != WL_CONNECTED)
     {
       delay(delayTime_ms);
-      if (maxWaitForNet < SECONDS_1)
+      if (maxWaitForNet < SECONDS_10)
       {
         maxWaitForNet++;
       }
@@ -98,7 +99,6 @@ void setupWiFi()
       {
         Serial.print(".");
         WiFi.disconnect();
-        delay(1000);
         WiFi.begin(NVMData::get().GetNetName().c_str(), NVMData::get().GetNetPassword().c_str());
         DynamicData::get().incErrorCounter("Wifi startup");
         maxWaitForNet = 0;
