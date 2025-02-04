@@ -8,4 +8,5 @@
 7: fillsolid (80 custom color)
 8: twoPhaseCustomLights (Alternates between {color} and black
 9: randomFlashingLights (alternates between random spots (0 to 144))
+10: allOn (all Num_pixel (144) go on with the specified color.
 default (over 9): offline (all LEDs black (transition also))
