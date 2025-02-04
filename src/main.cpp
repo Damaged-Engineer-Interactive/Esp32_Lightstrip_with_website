@@ -98,7 +98,7 @@ void setupWiFi()
       {
         Serial.print(".");
         WiFi.disconnect();
-        delay(100);
+        delay(1000);
         WiFi.begin(NVMData::get().GetNetName().c_str(), NVMData::get().GetNetPassword().c_str());
         DynamicData::get().incErrorCounter("Wifi startup");
         maxWaitForNet = 0;
