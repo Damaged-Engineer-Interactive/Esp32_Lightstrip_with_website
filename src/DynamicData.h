@@ -34,6 +34,7 @@ public:
     int green = 0;
     int blue = 0;
     int waittime = 10;
+    int brightness = 255;
     boolean connected = false;
 
     String setToZeroReason = "Startup";

@@ -281,6 +281,9 @@ void WebPage::handleRoot() {
   message += "\t<label for=\"waittime\">waittime</label>\n";
   message += "\t<input type=\"waittime\"value=\"" + String(DynamicData::get().waittime) + "\" name=\"waittime\" maxlength=\"4\">\n";
   message += "\t</div>\n";
+  message += "\t<label for=\"brightness\">brightness</label>\n";
+  message += "\t<input type=\"brightness\"placeholder=\"" + String(DynamicData::get().brightness) + "\" name=\"brightness\" maxlength=\"4\">\n";
+  message += "\t</div>\n";
   message += "\t<div>\n";
   message += "\t<button type=\"reset\">clear</button>\n";
   message += "\t<button type=\"submit\">set</button>\n";

@@ -545,6 +545,28 @@ void allOn() {
   FastLED.show();
 }
 
+void FullOnRedBlueFlasher() {
+  if (counterhasended && !counterended) {
+    fill_solid(leds, NUM_PIXELS, CRGB(255,0,0));
+    fill_solid(leds, (NUM_PIXELS/2), CRGB(0,0,255));
+    FastLED.setBrightness(DynamicData::get().brightness);
+    FastLED.show();
+  } 
+  else if (counterended && counterhasended) {
+    fill_solid(leds, NUM_PIXELS, CRGB::Black);
+    counterended = false;
+    counterhasended = false;
+    FastLED.show();
+  }
+
+  secondEndTimer++;
+
+  if (secondEndTimer >= 10) {
+    counterhasended = true;
+    secondEndTimer = 0;
+  }
+}
+
 /* http://192.168.54.205/change?scene=5&red=0&green=0&blue=0&waittime=2 Ref. in README.md && scenes esp32.txt */
 void loop() {
   checkNetworkSet();
