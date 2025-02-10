@@ -619,6 +619,10 @@ void loop() {
   case 10:
     allOn();
     break;
+  
+  case 11:
+    FullOnRedBlueFlasher();
+    break;
 
   default:
     offline();
