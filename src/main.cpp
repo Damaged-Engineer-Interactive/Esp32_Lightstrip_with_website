@@ -120,16 +120,16 @@ void setup() {
 
 void twoPhaseLights() {
   if(phase1&&counterended){
-    leds[c12-5] = leds[c14-5] = leds[c18-5] = CRGB(color1R, color1G, color1B);
-    leds[c11-5] = leds[c13-5] = leds[c17-5] = CRGB(color2R,color2G,color2B);
+    leds[c12-5] = leds[c14-5] = leds[c18-5] = CRGB::Red;
+    leds[c11-5] = leds[c13-5] = leds[c17-5] = CRGB::Blue;
     phase1 = false;
     counterended = false;
     counterhasended = false;
   }
   
   else if(!phase1&&counterended){
-    leds[c11] =  leds[c13]  = leds[c17] =  CRGB(color1R, color1G, color1B);
-    leds[c12] = leds[c14] = leds[c18] = CRGB(color2R,color2G,color2B);
+    leds[c11] =  leds[c13]  = leds[c17] =  CRGB::Red;
+    leds[c12] = leds[c14] = leds[c18] = CRGB::Blue;
     phase1 = true;
     counterended = false;
     counterhasended = false;
