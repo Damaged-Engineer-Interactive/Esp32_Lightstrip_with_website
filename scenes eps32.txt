@@ -6,7 +6,8 @@
 5: fulLighting (100 custom color)
 6: FUllLightFlash (80 leds in a rythim)
 7: fillsolid (80 custom color)
-8: twoPhaseCustomLights (Alternates between {color} and black
+8: twoPhaseCustomLights (Alternates between {color} and black)
 9: randomFlashingLights (alternates between random spots (0 to 144))
-10: allOn (all Num_pixel (144) go on with the specified color.
-default (over 9): offline (all LEDs black (transition also))
+10: allOn (all Num_pixel (144) go on with the specified color).
+11: fullLightRedBlueLight (waittime set by website color predeterment)
+default (over 11): offline (all LEDs black (transition also))
