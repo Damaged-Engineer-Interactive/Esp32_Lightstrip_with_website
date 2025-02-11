@@ -542,7 +542,7 @@ void allOn() {
 void FullOnRedBlueFlasher() {
   if (counterhasended && !counterended) {
     fill_solid(leds, 72, CRGB::Red);
-    fill_solid(leds+72, 72, CRGB::Blue);
+    fill_solid(leds+72, 71, CRGB::Blue);
     FastLED.setBrightness(DynamicData::get().brightness);
     FastLED.show();
     counterended = true;
