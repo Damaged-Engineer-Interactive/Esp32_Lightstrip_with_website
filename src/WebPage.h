@@ -74,7 +74,7 @@ String WebPage::GenHeader(int redirectTime)
   message += "</head>";
   message += "<body>\n";
   message += "\t<p>This will only work until it breaks</p>\n";
-  message += "\t<p>------------V0.3.0---------------</p>\n";
+  message += "\t<p>------------V0.3.1---------------</p>\n";
   return message;
 }
 String WebPage::GenFooter()
@@ -120,7 +120,7 @@ void WebPage::handleNotFound() {
   String message= "";
   message += GenHeader(3);
   message += "404: Listen, I'm just as confused as you are okay?\n\n";
-  message += "How did you get here anyways? Just go back to the home page okay?\n\n";
+  message += "How did you get here anyways?\n\n";
   message += GenFooter();
   server.send(200, "text/html", message);
 }
@@ -301,6 +301,7 @@ void WebPage::handleRoot() {
   message += "\t<p>Thanks for trying my site mate. Have a good day!";
   message += "\t<p>You have to <b> always </b> set the RGB value again (its only placeholders), otherwise it will reset the value to 0";
   message += "\t<p>As mandated I have say a fair <i> <b> epilepsie warning </b> </i> for the scene(s) '6, 9' ";
+  message += "\t<p> For the scene <i> 11 </i> I recommend using a value over <i> 40 </i> as <b> waittime </b>";
   message += GenFooter();
   server.send(200, "text/html", message);
 }

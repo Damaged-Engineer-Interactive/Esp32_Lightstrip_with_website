@@ -541,15 +541,16 @@ void allOn() {
 
 void FullOnRedBlueFlasher() {
   if (counterhasended && !counterended) {
-    fill_solid(leds, NUM_PIXELS, CRGB(255,0,0));
-    fill_solid(leds, (NUM_PIXELS/2), CRGB(0,0,255));
+    fill_solid(leds, 72, CRGB::Red);
+    fill_solid(leds+72, 72, CRGB::Blue);
     FastLED.setBrightness(DynamicData::get().brightness);
     FastLED.show();
     counterended = true;
     counterhasended = false;
   } 
   else if (counterended && counterhasended) {
-    fill_solid(leds, NUM_PIXELS, CRGB::Black);
+    fill_solid(leds, 72, CRGB::Blue);
+    fill_solid(leds+72, 72, CRGB::Red);
     counterended = false;
     counterhasended = false;
     FastLED.show();
@@ -557,7 +558,7 @@ void FullOnRedBlueFlasher() {
 
   secondEndTimer++;
 
-  if (secondEndTimer >= 50) {
+  if (secondEndTimer >= DynamicData::get().waittime) {
     counterhasended = true;
     secondEndTimer = 0;
   }
