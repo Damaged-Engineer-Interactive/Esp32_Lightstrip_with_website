@@ -74,7 +74,7 @@ String WebPage::GenHeader(int redirectTime)
   message += "</head>";
   message += "<body>\n";
   message += "\t<p>This will only work until it breaks</p>\n";
-  message += "\t<p>------------V0.2.1---------------</p>\n";
+  message += "\t<p>------------V0.3.0---------------</p>\n";
   return message;
 }
 String WebPage::GenFooter()
@@ -157,6 +157,9 @@ void WebPage::handleChange() {
     }
     else if (server.argName(i) == "waittime") {
       DynamicData::get().waittime =  server.arg(i).toInt();
+    }
+    else if (server.argName(i) == "brightness"){
+      DynamicData::get().brightness = server.arg(i).toInt();
     }
   }
   if ((netPasswordSet == true)&&(netNameSet == true))

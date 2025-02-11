@@ -216,8 +216,8 @@ void trafficAdvisorWithFLashers() {
 
   if(phase1) {
     if(!counterended) {
-      leds[c11-5] = leds[c12-5] = leds[c18-5] = CRGB(color1R,color1G,color1B);
-      leds[c14-5] = leds[c13-5] = leds[c17-5] =  CRGB(color2R,color2G,color2B);
+      leds[c11-5] = leds[c12-5] = leds[c18-5] = CRGB::Red;
+      leds[c14-5] = leds[c13-5] = leds[c17-5] =  CRGB::Blue;
     }
     if(counterended) {
       phase1 = false;
@@ -227,8 +227,8 @@ void trafficAdvisorWithFLashers() {
 
   else if(!phase1) {
     if(!counterended) {
-       leds[c13] =  leds[c17] = leds[c14] =  CRGB(color1R,color1G,color1B);
-      leds[c11] = leds[c12] = leds[c18] = CRGB(color2R,color2G,color2B);
+       leds[c13] =  leds[c17] = leds[c14] =  CRGB::Red;
+      leds[c11] = leds[c12] = leds[c18] = CRGB::Blue;
     }
     if(counterended) {
       phase1 = true;
@@ -545,6 +545,8 @@ void FullOnRedBlueFlasher() {
     fill_solid(leds, (NUM_PIXELS/2), CRGB(0,0,255));
     FastLED.setBrightness(DynamicData::get().brightness);
     FastLED.show();
+    counterended = true;
+    counterhasended = false;
   } 
   else if (counterended && counterhasended) {
     fill_solid(leds, NUM_PIXELS, CRGB::Black);
@@ -555,7 +557,7 @@ void FullOnRedBlueFlasher() {
 
   secondEndTimer++;
 
-  if (secondEndTimer >= 10) {
+  if (secondEndTimer >= 50) {
     counterhasended = true;
     secondEndTimer = 0;
   }
