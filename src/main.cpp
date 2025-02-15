@@ -539,9 +539,9 @@ void allOn() {
   FastLED.show();
 }
 
-void FullOnRedBlueFlasher() {
+void FullOnRedBlackFlasher() {
   if (counterhasended && !counterended) {
-    fill_solid(leds, 72, CRGB::Red);
+    fill_solid(leds, 72, CRGB::Black);
     fill_solid(leds+72, 72, CRGB::Blue);
     FastLED.setBrightness(DynamicData::get().brightness);
     FastLED.show();
@@ -550,7 +550,7 @@ void FullOnRedBlueFlasher() {
   } 
   else if (counterended && counterhasended) {
     fill_solid(leds, 72, CRGB::Blue);
-    fill_solid(leds+72, 72, CRGB::Red);
+    fill_solid(leds+72, 72, CRGB::Black);
     counterended = false;
     counterhasended = false;
     FastLED.show();
@@ -618,7 +618,7 @@ void loop() {
     break;
   
   case 11:
-    FullOnRedBlueFlasher();
+    FullOnRedBlackFlasher();
     break;
 
   default:
