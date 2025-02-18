@@ -139,7 +139,7 @@ void twoPhaseLights() {
     leds[c11] = leds[c12] = leds[c13] = leds[c14] = leds[c17] = leds[c18]  = CRGB::Black;
     leds[c11-5] = leds[c12-5] = leds[c13-5] = leds[c14-5] = leds[c17-5] = leds[c18-5]  = CRGB::Black;
   }
-
+  FastLED.setBrightness(DynamicData::get().brightness);
   FastLED.show(); 
   endcounter++;
 
@@ -218,6 +218,7 @@ void trafficAdvisorWithFLashers() {
     if(!counterended) {
       leds[c11-5] = leds[c12-5] = leds[c18-5] = CRGB::Red;
       leds[c14-5] = leds[c13-5] = leds[c17-5] =  CRGB::Blue;
+      FastLED.setBrightness(DynamicData::get().brightness);
     }
     if(counterended) {
       phase1 = false;
@@ -227,8 +228,9 @@ void trafficAdvisorWithFLashers() {
 
   else if(!phase1) {
     if(!counterended) {
-       leds[c13] =  leds[c17] = leds[c14] =  CRGB::Red;
+      leds[c13] =  leds[c17] = leds[c14] =  CRGB::Red;
       leds[c11] = leds[c12] = leds[c18] = CRGB::Blue;
+      FastLED.setBrightness(DynamicData::get().brightness);
     }
     if(counterended) {
       phase1 = true;
@@ -356,6 +358,7 @@ void lightStripTrafficAdvisor() {
     leds[fourcounter] = CRGB::OrangeRed;
     leds[sevencounter] = CRGB::OrangeRed;
     leds[sevencounter-1] = CRGB::OrangeRed;
+    FastLED.setBrightness(DynamicData::get().brightness);
     counterended= false;
   }
 
@@ -406,6 +409,7 @@ void warpCoreMode() {
   leds[counter-1] = CRGB::Black;
   leds[counter] = CRGB(DynamicData::get().red, DynamicData::get().green, DynamicData::get().blue);
   leds[sevencounter-1] = CRGB::Black;
+  FastLED.setBrightness(DynamicData::get().brightness);
   leds[sevencounter] = CRGB(DynamicData::get().red, DynamicData::get().green, DynamicData::get().blue);
   FastLED.show();
   if(counterended) {
@@ -433,12 +437,14 @@ void warpCoreMode() {
 
 void fullLighting() {
   fill_solid(leds, 100, CRGB(DynamicData::get().red, DynamicData::get().green, DynamicData::get().blue));
+  FastLED.setBrightness(DynamicData::get().brightness);
   FastLED.show();
 }
 
 void FullLightFlash() {
   if (counterhasended && !counterended) {
     fill_solid(leds, 70, CRGB(DynamicData::get().red, DynamicData::get().green, DynamicData::get().blue));
+    FastLED.setBrightness(DynamicData::get().brightness);
     counterhasended = false;
     counterended = true;
     FastLED.show();
@@ -463,6 +469,7 @@ void twoPhaseLightCusomColor() {
   if(phase1&&counterended){
     leds[c12-5] = leds[c14-5] = leds[c18-5] = CRGB::Black;
     leds[c11-5] = leds[c13-5] = leds[c17-5] = CRGB(DynamicData::get().red,DynamicData::get().green,DynamicData::get().blue);
+    FastLED.setBrightness(DynamicData::get().brightness);
     phase1 = false;
     counterended = false;
     counterhasended = false;
@@ -470,6 +477,7 @@ void twoPhaseLightCusomColor() {
   
   else if(!phase1&&counterended){
     leds[c11] =  leds[c13]  = leds[c17] =  CRGB(DynamicData::get().red,DynamicData::get().green,DynamicData::get().blue);
+    FastLED.setBrightness(DynamicData::get().brightness);
     leds[c12] = leds[c14] = leds[c18] = CRGB::Black;
     phase1 = true;
     counterended = false;
@@ -496,6 +504,7 @@ void twoPhaseLightCusomColor() {
 
 void fillSolid80() {
   fill_solid(leds, 80, CRGB(DynamicData::get().red, DynamicData::get().green, DynamicData::get().blue));
+  FastLED.setBrightness(DynamicData::get().brightness);
   FastLED.show();
 }
 
@@ -510,6 +519,7 @@ void RandomFlashingLights() {
     leds[randomNum] = CRGB(DynamicData::get().red, DynamicData::get().green, DynamicData::get().blue);
     counterhasended = false;
     counterended = true;
+    FastLED.setBrightness(DynamicData::get().brightness);
     FastLED.show();
   } 
   else if (counterended && counterhasended) {
@@ -536,6 +546,7 @@ void lighting() {
 
 void allOn() {
   fill_solid(leds, NUM_PIXELS, CRGB(DynamicData::get().red, DynamicData::get().green, DynamicData::get().blue));
+  FastLED.setBrightness(DynamicData::get().brightness);
   FastLED.show();
 }
 
