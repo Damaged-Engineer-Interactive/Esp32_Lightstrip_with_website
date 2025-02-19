@@ -562,6 +562,7 @@ void FullOnBlueBlackFlasher() {
   else if (counterended && counterhasended) {
     fill_solid(leds, 72, CRGB::Blue);
     fill_solid(leds+72, 72, CRGB::Black);
+    FastLED.setBrightness(DynamicData::get().brightness);
     counterended = false;
     counterhasended = false;
     FastLED.show();
@@ -585,8 +586,9 @@ void FullOnCustomBlackFlasher() {
     counterhasended = false;
   } 
   else if (counterended && counterhasended) {
-    fill_solid(leds, 72, CRGB::Blue);
+    fill_solid(leds, 72, CRGB(DynamicData::get().red, DynamicData::get().green, DynamicData::get().blue));
     fill_solid(leds+72, 72, CRGB::Black);
+    FastLED.setBrightness(DynamicData::get().brightness);
     counterended = false;
     counterhasended = false;
     FastLED.show();
