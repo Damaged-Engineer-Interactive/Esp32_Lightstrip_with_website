@@ -550,10 +550,35 @@ void allOn() {
   FastLED.show();
 }
 
-void FullOnRedBlackFlasher() {
+void FullOnBlueBlackFlasher() {
   if (counterhasended && !counterended) {
     fill_solid(leds, 72, CRGB::Black);
     fill_solid(leds+72, 72, CRGB::Blue);
+    FastLED.setBrightness(DynamicData::get().brightness);
+    FastLED.show();
+    counterended = true;
+    counterhasended = false;
+  } 
+  else if (counterended && counterhasended) {
+    fill_solid(leds, 72, CRGB::Blue);
+    fill_solid(leds+72, 72, CRGB::Black);
+    counterended = false;
+    counterhasended = false;
+    FastLED.show();
+  }
+
+  secondEndTimer++;
+
+  if (secondEndTimer >= DynamicData::get().waittime) {
+    counterhasended = true;
+    secondEndTimer = 0;
+  }
+}
+
+void FullOnCustomBlackFlasher() {
+  if (counterhasended && !counterended) {
+    fill_solid(leds, 72, CRGB::Black);
+    fill_solid(leds+72, 72, CRGB(DynamicData::get().red, DynamicData::get().green, DynamicData::get().blue));
     FastLED.setBrightness(DynamicData::get().brightness);
     FastLED.show();
     counterended = true;
@@ -629,12 +654,17 @@ void loop() {
     break;
   
   case 11:
-    FullOnRedBlackFlasher();
+    FullOnBlueBlackFlasher();
     break;
 
+  case 12:
+    FullOnCustomBlackFlasher();
+    break;
+  
   default:
     offline();
     break;
+  
   }
 
   delay(1);
