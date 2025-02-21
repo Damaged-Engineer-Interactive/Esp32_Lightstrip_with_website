@@ -37,93 +37,92 @@ public:
     void loop();
     bool newNetworkSet = false;
 };
+
 WebPage::WebPage()
 {
 }
+
 WebPage::~WebPage()
 {
 }
+
 WebServer server(80);
+
 void WebPage::loop() {
     server.handleClient();
 }
+
 void WebPage::Init() {
-    
     server.on("/", std::bind(&WebPage::handleRoot, this));
     server.on("/change", std::bind(&WebPage::handleChange, this));
     server.on("/json", std::bind(&WebPage::handleJson, this));
-    // choose bin file
     server.on("/firmware", HTTP_GET, std::bind(&WebPage::handleFirmware, this));
-    /*handling uploading firmware file */
     server.on("/update", HTTP_POST, std::bind(&WebPage::handleUpload, this), std::bind(&WebPage::handleUpload2, this));
     server.onNotFound(std::bind(&WebPage::handleNotFound, this));
     server.begin();
     Serial.println("HTTP server started");
 }
+
 String WebPage::GenHeader(int redirectTime)
 {
-  Serial.println(redirectTime);
-  String message= "";
-  message += "<html>";
-  message += "<head>";
-  if (redirectTime > 0)
-  {
-    String redirectTimeString = String(redirectTime);
-    message += "<meta http-equiv=\"refresh\" content=\"" + redirectTimeString + ";url=http://" + DynamicData::get().ipaddress + "/\" />";
-  }
-  message += "</head>";
-  message += "<body>\n";
-  message += "\t<p>This will only work until it breaks</p>\n";
-  message += "\t<p>------------V0.3.1---------------</p>\n";
-  return message;
+    Serial.println(redirectTime);
+    String message = "";
+    message += "<html><head>";
+    if (redirectTime > 0)
+    {
+        message += "<meta http-equiv=\"refresh\" content=\"" + String(redirectTime) + ";url=http://" + DynamicData::get().ipaddress + "/\" />";
+    }
+    message += "<style>";
+    message += "body { background-color: black; color: white; font-family: Arial, sans-serif; margin: 0; padding: 0; }";
+    message += "input, button { background-color: #444; color: white; border: 1px solid white; padding: 5px; margin: 5px 0; }";
+    message += "input::placeholder { color: lightgray; }";
+    message += "table { border-collapse: collapse; width: 100%; background-color: #222; color: white; }";
+    message += "td { padding: 8px; border: 1px solid white; }";
+    message += "h1, h2 { color: lightgray; }";
+    message += "a { color: cyan; text-decoration: none; }";
+    message += "a:hover { color: lightblue; }";
+    message += "</style></head><body>";
+    return message;
 }
+
 String WebPage::GenFooter()
 {
-  String message= "";
-  message += "\t<p>---------------------------</p>\n";
-  message += "</body>";
-  message += "</html>\n";
-  return message;
+    return "<p>---------------------------</p></body></html>";
 }
+
 String WebPage::GenTableStart()
 {
-  String message= "";
-  message += "\t<table border=\"4\">";
-  message += "\t<tr>\n";
-  return message;
+    return "<table border=\"1\" style=\"width: 100%; border: 1px solid white; background-color: #222;\"><tr>";
 }
+
 String WebPage::GenTableNewColumn()
 {
-  String message= "";
-  message += "\t</tr>";
-  message += "\t<tr>\n";
-  return message;
+    return "</tr><tr>";
 }
+
 String WebPage::GenTableRows(String Content[], int Count)
 {
-  String message = "";
-  for (int i = 0; i < Count; i++)
-  {
-    message += "<td>"+Content[i]+"</td>";
-  }
-  message +="\n";
-  return message;
+    String message = "";
+    for (int i = 0; i < Count; i++)
+    {
+        message += "<td>" + Content[i] + "</td>";
+    }
+    message += "\n";
+    return message;
 }
+
 String WebPage::GenTableEnd()
 {
-  String message= "";
-  message += "\t</tr>";
-  message += "\t</table>\n";
-  return message;
+    return "</tr></table>";
 }
+
 void WebPage::handleNotFound() {
-  String message= "";
-  message += GenHeader(3);
-  message += "404: Listen, I'm just as confused as you are okay?\n\n";
-  message += "How did you get here anyways?\n\n";
-  message += GenFooter();
-  server.send(200, "text/html", message);
+    String message = GenHeader(3);
+    message += "<p>404: I'm just as confused as you are. How did you get here?</p>";
+    message += GenFooter();
+    server.send(200, "text/html", message);
 }
+
 void WebPage::handleChange() {
   String message = "Ohh oh!\n\n";
   bool netNameSet = false;
@@ -168,12 +167,7 @@ void WebPage::handleChange() {
     NVMData::get().SetNetData(netName, netPassword);
     message = "You got it!";
   }
-  String returnMessage= "";
-  returnMessage += GenHeader(3);
-  returnMessage += message;
-  returnMessage += "</body>";
-  returnMessage += "</html>";
-  server.send(200, "text/html", returnMessage);
+  handleRoot();
 }
 void WebPage::handleFirmware() {
   const char* serverIndex = 
@@ -301,7 +295,7 @@ void WebPage::handleRoot() {
   message += "\t<p>Thanks for trying my site mate. Have a good day!";
   message += "\t<p>You have to <b> always </b> set the RGB value again (its only placeholders), otherwise it will reset the value to 0";
   message += "\t<p>As mandated I have say a fair <i> <b> epilepsie warning </b> </i> for the scene(s) '6, 9' ";
-  message += "\t<p> For the scene <i> 11 </i> I recommend using a value over <i> 40 </i> as <b> waittime </b>";
+  message += "\t<p> For the scene <i> 11 </i> I recommend using a value over <i> 150 </i> as <b> waittime </b>";
   message += GenFooter();
   server.send(200, "text/html", message);
 }
