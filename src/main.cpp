@@ -602,6 +602,30 @@ void FullOnCustomBlackFlasher() {
   }
 }
 
+void strobo(){
+  if (counterhasended && !counterended) {
+    fill_solid(leds, NUM_PIXELS, CRGB::White);
+    FastLED.setBrightness(DynamicData::get().brightness);
+    counterhasended = false;
+    counterended = true;
+    FastLED.show();
+  } 
+  else if (counterended && counterhasended) {
+    fill_solid(leds, NUM_PIXELS, CRGB::Black);
+    counterended = false;
+    counterhasended = false;
+    FastLED.show();
+  }
+  endcounter++;
+  if (secondEndTimer >= 2) {
+    counterhasended = true;
+    secondEndTimer = 0;
+  }
+  if (endcounter >=DynamicData::get().waittime){
+    secondEndTimer++;
+    endcounter=0;
+  }
+}
 /* http://192.168.54.205/change?scene=5&red=0&green=0&blue=0&waittime=2 Ref. in README.md && scenes esp32.txt */
 void loop() {
   checkNetworkSet();
@@ -661,6 +685,10 @@ void loop() {
 
   case 12:
     FullOnCustomBlackFlasher();
+    break;
+  
+  case 13:
+    strobo();
     break;
   
   default:
