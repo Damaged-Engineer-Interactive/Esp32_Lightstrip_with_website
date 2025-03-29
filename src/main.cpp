@@ -472,12 +472,6 @@ void twoPhaseLightCusomColor() {
   }
 }
 
-void fillSolid80() {
-  fill_solid(leds, 80, CRGB(DynamicData::get().red, DynamicData::get().green, DynamicData::get().blue));
-  FastLED.setBrightness(DynamicData::get().brightness);
-  FastLED.show();
-}
-
 void offline() {
   fill_solid(leds, NUM_PIXELS, CRGB::Black);
   FastLED.show();
@@ -590,6 +584,7 @@ void strobo(){
     endcounter=0;
   }
 }
+
 /* http://192.168.54.205/change?scene=5&red=0&green=0&blue=0&waittime=2 Ref. in README.md && scenes esp32.txt */
 void loop() {
   checkNetworkSet();
@@ -618,30 +613,26 @@ void loop() {
     break;
 
   case 4:
-    fillSolid80();
-    break;
-
-  case 5:
     twoPhaseLightCusomColor();
     break;
-    
-  case 6: 
+
+  case 5: 
     RandomFlashingLights();
     break;
   
-  case 7:
+  case 6:
     allOn();
     break;
   
-  case 8:
+  case 7:
     FullOnBlueBlackFlasher();
     break;
 
-  case 9:
+  case 8:
     FullOnCustomBlackFlasher();
     break;
   
-  case 10:
+  case 9:
     strobo();
     break;
   
