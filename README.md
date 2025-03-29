@@ -20,4 +20,5 @@ Feel free to alter the webpages etc to your liking just make sure not to break a
 7. FullOnBlueBlackFlasher (Alternates between red and Blue over 77 pixels each)
 8. FullOnCustomBlackFlasher (same as the one before but it takes a custom color)
 9. strobo (turns on and off (white) in the waittime provided)
-everything over *the last number of the cases* will turn it "off" (and that is also used as a transition to avoid LEDs getting stuck on)
+
+### everything over *the last number of the cases* will turn it "off" (and that is also used as a transition to avoid LEDs getting stuck on)
