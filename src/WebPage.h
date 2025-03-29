@@ -265,15 +265,15 @@ void WebPage::handleRoot() {
   message += "\t</div>\n";
   message += "\t<div>\n";
   message += "\t<label for=\"red\">red</label>\n";
-  message += "\t<input type=\"text\"placeholder=\"" + String(DynamicData::get().red) + "\" name=\"red\" maxlength=\"4\">\n";
+  message += "\t<input type=\"text\"value=\"" + String(DynamicData::get().red) + "\" name=\"red\" maxlength=\"4\">\n";
   message += "\t</div>\n";
   message += "\t<div>\n";
   message += "\t<label for=\"green\">green</label>\n";
-  message += "\t<input type=\"text\"placeholder=\"" + String(DynamicData::get().green) + "\" name=\"green\" maxlength=\"4\">\n";
+  message += "\t<input type=\"text\"value=\"" + String(DynamicData::get().green) + "\" name=\"green\" maxlength=\"4\">\n";
   message += "\t</div>\n";
   message += "\t<div>\n";
   message += "\t<label for=\"blue\">blue</label>\n";
-  message += "\t<input type=\"text\"placeholder=\"" + String(DynamicData::get().blue) + "\" name=\"blue\" maxlength=\"4\">\n";
+  message += "\t<input type=\"text\"value=\"" + String(DynamicData::get().blue) + "\" name=\"blue\" maxlength=\"4\">\n";
   message += "\t</div>\n";
   message += "\t<label for=\"waittime\">waittime</label>\n";
   message += "\t<input type=\"waittime\"value=\"" + String(DynamicData::get().waittime) + "\" name=\"waittime\" maxlength=\"4\">\n";

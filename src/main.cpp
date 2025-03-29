@@ -435,36 +435,6 @@ void warpCoreMode() {
   }
 }
 
-void fullLighting() {
-  fill_solid(leds, 100, CRGB(DynamicData::get().red, DynamicData::get().green, DynamicData::get().blue));
-  FastLED.setBrightness(DynamicData::get().brightness);
-  FastLED.show();
-}
-
-void FullLightFlash() {
-  if (counterhasended && !counterended) {
-    fill_solid(leds, 70, CRGB(DynamicData::get().red, DynamicData::get().green, DynamicData::get().blue));
-    FastLED.setBrightness(DynamicData::get().brightness);
-    counterhasended = false;
-    counterended = true;
-    FastLED.show();
-  } 
-  else if (counterended && counterhasended) {
-    fill_solid(leds, 70, CRGB::Black);
-    counterended = false;
-    counterhasended = false;
-    FastLED.show();
-  }
-
-  if (secondEndTimer >= 110) {
-    counterhasended = true;
-    secondEndTimer = 0;
-  }
-
-  secondEndTimer++;
-
-}
-
 void twoPhaseLightCusomColor() {
   if(phase1&&counterended){
     leds[c12-5] = leds[c14-5] = leds[c18-5] = CRGB::Black;
@@ -536,12 +506,6 @@ void RandomFlashingLights() {
     secondEndTimer = 0;
   }
   
-}
-
-void lighting() {
-  leds[20] = leds [60] = leds[100] = leds[140] = CRGB(DynamicData::get().red, DynamicData::get().green, DynamicData::get().blue);
-  FastLED.setBrightness(150);
-  FastLED.show();
 }
 
 void allOn() {
@@ -652,42 +616,32 @@ void loop() {
   case 3:
     warpCoreMode();
     break;
-  
-  case 4:
-    lighting();
-    break;
-  
-  case 5:
-    fullLighting();
-    break;
-  
-  case 6:
-    FullLightFlash();
-    break;
 
-  case 7:
+  case 4:
     fillSolid80();
     break;
-  case 8:
+
+  case 5:
     twoPhaseLightCusomColor();
     break;
-  case 9: 
+    
+  case 6: 
     RandomFlashingLights();
     break;
   
-  case 10:
+  case 7:
     allOn();
     break;
   
-  case 11:
+  case 8:
     FullOnBlueBlackFlasher();
     break;
 
-  case 12:
+  case 9:
     FullOnCustomBlackFlasher();
     break;
   
-  case 13:
+  case 10:
     strobo();
     break;
   
