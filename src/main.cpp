@@ -120,24 +120,24 @@ void setup() {
 
 void twoPhaseLights() {
   if(phase1&&counterended){
-    leds[c12-5] = leds[c14-5] = leds[c18-5] = CRGB::Red;
-    leds[c11-5] = leds[c13-5] = leds[c17-5] = CRGB::Blue;
+    fill_solid(leds, NUM_PIXELS/2+NUM_PIXELS/2, CRGB::Red);
+    fill_solid(leds, NUM_PIXELS/2, CRGB::Blue);
     phase1 = false;
     counterended = false;
     counterhasended = false;
   }
   
   else if(!phase1&&counterended){
-    leds[c11] =  leds[c13]  = leds[c17] =  CRGB::Red;
-    leds[c12] = leds[c14] = leds[c18] = CRGB::Blue;
+    fill_solid(leds, NUM_PIXELS/2+NUM_PIXELS/2, CRGB::Blue);
+    fill_solid(leds, NUM_PIXELS/2, CRGB::Red);
     phase1 = true;
     counterended = false;
     counterhasended = false;
   }
 
   if(counterhasended){
-    leds[c11] = leds[c12] = leds[c13] = leds[c14] = leds[c17] = leds[c18]  = CRGB::Black;
-    leds[c11-5] = leds[c12-5] = leds[c13-5] = leds[c14-5] = leds[c17-5] = leds[c18-5]  = CRGB::Black;
+    fill_solid(leds, NUM_PIXELS, CRGB::Black);
+    counterhasended = false;
   }
   FastLED.setBrightness(DynamicData::get().brightness);
   FastLED.show(); 
@@ -150,152 +150,6 @@ void twoPhaseLights() {
   if(endcounter >=250) {
     counterended = true;
     endcounter = 0;
-  }
-}
-
-void trafficAdvisorWithFLashers() {
-  if(counter < 2) {
-    leds[number] = CRGB::Black;
-  }
-
-  else {
-    leds[counter-2] = CRGB::Black;
-  }
-
-  if(sevencounter < 2) {
-    leds[number] = CRGB::Black;
-  }
-
-  else {
-    leds[sevencounter-2] = CRGB::Black;
-  }
-
-  if(scndcounter < 2) {
-    leds[number] = CRGB::Black;
-  }
-
-  else {
-    leds[scndcounter-2] = CRGB::Black;
-  }
-
-  if(thrdcounter < 2) {
-    leds[number] = CRGB::Black;
-  }
-
-  else {
-    leds[thrdcounter-2] = CRGB::Black;
-  }
-
-  if(fourcounter < 2) {
-    leds[number] = CRGB::Black;
-  }
-
-  else {
-    leds[fourcounter-2] = CRGB::Black;
-  }
-  
-  if(counterTwoEnd) {
-    counter++;
-    scndcounter++;
-    thrdcounter++;
-    fourcounter++;
-    sevencounter++;
-  }
-
-  if(counterTwoEnd) {
-    leds[counter] = CRGB::OrangeRed;
-    leds[scndcounter] = CRGB::OrangeRed;
-    leds[counter-1] = CRGB::OrangeRed;
-    leds[scndcounter-1] = CRGB::OrangeRed;
-    leds[thrdcounter] = CRGB::OrangeRed;
-    leds[fourcounter] = CRGB::OrangeRed;
-    leds[sevencounter] = CRGB::OrangeRed;
-    leds[sevencounter-1] = CRGB::OrangeRed;
-    counterTwoEnd = false;
-  }
-
-  if(phase1) {
-    if(!counterended) {
-      leds[c11-5] = leds[c12-5] = leds[c18-5] = CRGB::Red;
-      leds[c14-5] = leds[c13-5] = leds[c17-5] =  CRGB::Blue;
-      FastLED.setBrightness(DynamicData::get().brightness);
-    }
-    if(counterended) {
-      phase1 = false;
-      counterended = false;
-    }
-  }
-
-  else if(!phase1) {
-    if(!counterended) {
-      leds[c13] =  leds[c17] = leds[c14] =  CRGB::Red;
-      leds[c11] = leds[c12] = leds[c18] = CRGB::Blue;
-      FastLED.setBrightness(DynamicData::get().brightness);
-    }
-    if(counterended) {
-      phase1 = true;
-      counterended = false;
-    }
-  }
-
-  if(counterhasended){
-    leds[c11] = leds[c12] = leds[c13] = leds[c14] = leds[c17] = leds[c18]  = CRGB::Black;
-    leds[c11-5] = leds[c12-5] = leds[c13-5] = leds[c14-5] = leds[c17-5] = leds[c18-5]  = CRGB::Black;
-    counterhasended = false;
-  }
-
-  FastLED.show();
-  
-  endcounter++;
-  secondEndTimer++;
-
-  if(secondEndTimer >= 6) {
-    counterTwoEnd = true;
-    secondEndTimer = 0;
-  }
-
-  if(endcounter == 249) {
-    counterhasended = true;
-  }
-
-  if(endcounter >=250) {
-    counterended = true;
-    endcounter = 0;
-  }
-
-  if(fourcounter >= 143) {
-    leds[fourcounter-1] = CRGB::Black;
-    fourcounter = 1;
-    leds[dirtybit-1] = CRGB::Black;
-    leds[dirtybit] = CRGB::Black;
-  }
-
-  if(sevencounter >= 143) {
-    leds[sevencounter-1] = CRGB::Black;
-    sevencounter = 1;
-    leds[dirtybit-1] = CRGB::Black;
-    leds[dirtybit] = CRGB::Black;
-  }
-
-  if(scndcounter >= 143) {
-    leds[scndcounter-1] = CRGB::Black;
-    scndcounter = 1;
-    leds[dirtybit-1] = CRGB::Black;
-    leds[dirtybit] = CRGB::Black;
-  }
-
-  if(thrdcounter >= 143) {
-    leds[thrdcounter-1] = CRGB::Black;
-    thrdcounter = 1;
-    leds[dirtybit-1] = CRGB::Black;
-    leds[dirtybit] = CRGB::Black;
-  }
-
-  if(counter >= 143) {
-    leds[counter-1] = CRGB::Black;
-    counter = 1;
-    leds[dirtybit-1] = CRGB::Black;
-    leds[dirtybit] = CRGB::Black;
   }
 }
 
@@ -410,6 +264,7 @@ void warpCoreMode() {
   leds[counter] = CRGB(DynamicData::get().red, DynamicData::get().green, DynamicData::get().blue);
   leds[sevencounter-1] = CRGB::Black;
   leds[sevencounter] = CRGB(DynamicData::get().red, DynamicData::get().green, DynamicData::get().blue);
+  leds[thrdcounter-1] = CRGB::Black;
   leds[thrdcounter] = CRGB(DynamicData::get().red, DynamicData::get().green, DynamicData::get().blue);
 
   FastLED.setBrightness(DynamicData::get().brightness);
@@ -604,43 +459,41 @@ void loop() {
   oldScene = DynamicData::get().scene;
   switch (DynamicData::get().scene)
   {
-  case 0:
-    trafficAdvisorWithFLashers();
-    break;
 
-  case 1:
+
+  case 0:
     lightStripTrafficAdvisor();
     break;
 
-  case 2:
+  case 1:
     twoPhaseLights();
     break;
 
-  case 3:
+  case 2:
     warpCoreMode();
     break;
 
-  case 4:
+  case 3:
     twoPhaseLightCusomColor();
     break;
 
-  case 5: 
+  case 4: 
     RandomFlashingLights();
     break;
   
-  case 6:
+  case 5:
     allOn();
     break;
   
-  case 7:
+  case 6:
     FullOnBlueBlackFlasher();
     break;
 
-  case 8:
+  case 7:
     FullOnCustomBlackFlasher();
     break;
   
-  case 9:
+  case 8:
     strobo();
     break;
   
