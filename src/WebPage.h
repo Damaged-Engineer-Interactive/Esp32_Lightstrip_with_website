@@ -13,7 +13,7 @@ class WebPage
 {
 private:
     WebServer server;
-    String GenHeader(int redirectTime);
+    String GenHeader(int redirectTime, bool redirect);
     String GenFooter();
     String GenTableStart();
     String GenTableNewColumn();
@@ -63,12 +63,12 @@ void WebPage::Init() {
     Serial.println("HTTP server started");
 }
 
-String WebPage::GenHeader(int redirectTime)
+String WebPage::GenHeader(int redirectTime, bool redirect)
 {
     Serial.println(redirectTime);
     String message = "";
     message += "<html><head>";
-    if (redirectTime > 0)
+    if (redirect)
     {
         message += "<meta http-equiv=\"refresh\" content=\"" + String(redirectTime) + ";url=http://" + DynamicData::get().ipaddress + "/\" />";
     }
@@ -117,7 +117,7 @@ String WebPage::GenTableEnd()
 }
 
 void WebPage::handleNotFound() {
-    String message = GenHeader(3);
+    String message = GenHeader(3, true);
     message += "<p>404: I'm just as confused as you are. How did you get here?</p>";
     message += GenFooter();
     server.send(200, "text/html", message);
@@ -167,6 +167,7 @@ void WebPage::handleChange() {
     NVMData::get().SetNetData(netName, netPassword);
     message = "You got it!";
   }
+  message += GenHeader(0, true);
   server.send(200, "text/html", message);
 }
 void WebPage::handleFirmware() {
@@ -237,7 +238,7 @@ void WebPage::handleUpload2() {
 void WebPage::handleRoot() {
   String uri = DynamicData::get().ipaddress;
   String message = "";
-  message += GenHeader(0);
+  message += GenHeader(0, false);
   
   if( DynamicData::get().setNewNetwork == true )
   {
