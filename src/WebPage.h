@@ -167,7 +167,7 @@ void WebPage::handleChange() {
     NVMData::get().SetNetData(netName, netPassword);
     message = "You got it!";
   }
-  handleRoot();
+  server.send(200, "text/html", message);
 }
 void WebPage::handleFirmware() {
   const char* serverIndex = 
