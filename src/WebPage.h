@@ -293,7 +293,7 @@ void WebPage::handleRoot() {
   message += "\t<p>---------------------------</p>\n";
   message += "\t<p>ipaddress:  " + DynamicData::get().ipaddress + "</p>\n";
   message += "\t<p>Thanks for trying my site mate. Have a good day!";
-  message += "\t<p>You have to <b> always </b> set the RGB value again (its only placeholders), otherwise it will reset the value to 0";
+  message += "\t<p>The values for <b> RGB </b> no longer reset and are actual values";
   message += "\t<p>As mandated I have say a fair <i> <b> epilepsie warning </b> </i> for the scene(s) '6, 9' ";
   message += "\t<p> For the scene <i> 11 </i> I recommend using a value over <i> 150 </i> as <b> waittime </b>";
   message += GenFooter();
