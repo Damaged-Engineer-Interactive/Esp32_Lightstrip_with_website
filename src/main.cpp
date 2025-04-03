@@ -44,8 +44,7 @@ static const int delayTime_ms = 5;
 static const int SECONDS_1 = 200;
 static const int SECONDS_10 = 2000;
 
-void checkNetworkSet()
-{
+void checkNetworkSet() {
   if(DynamicData::get().setNewNetwork == true)
   {
     if(webPage.newNetworkSet == true)
@@ -61,11 +60,9 @@ void checkNetworkSet()
   }
 }
 
-void setupWiFi()
-{
+void setupWiFi() {
   String hostname = "LightStripAaron";
-  if (NVMData::get().NetDataValid() == false)
-  {
+  if (NVMData::get().NetDataValid() == false) {
     DynamicData::get().setNewNetwork = true;
     Serial.println(WiFi.macAddress());
     WiFi.mode(WIFI_AP);
@@ -74,23 +71,19 @@ void setupWiFi()
     Serial.println(WiFi.softAPIP());
     DynamicData::get().ipaddress = WiFi.softAPIP().toString();
   }
-  else
-  {
+  else {
     WiFi.mode(WIFI_STA);
     WiFi.setHostname(hostname.c_str());
     Serial.printf("SSID = %s\n", NVMData::get().GetNetName().c_str());
     WiFi.begin(NVMData::get().GetNetName().c_str(), NVMData::get().GetNetPassword().c_str());
     Serial.println(WiFi.macAddress());
     int maxWaitForNet = 0;
-    while (WiFi.status() != WL_CONNECTED)
-    {
+    while (WiFi.status() != WL_CONNECTED) {
       delay(delayTime_ms);
-      if (maxWaitForNet < SECONDS_10)
-      {
+      if (maxWaitForNet < SECONDS_10) {
         maxWaitForNet++;
       }
-      else
-      {
+      else {
         Serial.print(".");
         WiFi.disconnect();
         WiFi.begin(NVMData::get().GetNetName().c_str(), NVMData::get().GetNetPassword().c_str());
