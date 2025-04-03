@@ -110,7 +110,7 @@ void setup() {
   FastLED.addLeds<NEOPIXEL, PIN_WS2812B>(leds, NUM_PIXELS);
   Serial.begin(115200);
 
-  //gettign dynamic data from the Website (kidna usefull)
+  //getting dynamic data from the Website (the setup)
   NVMData::get().Init();
   DynamicData::get().Init();
   Serial.println("NetName: "+  NVMData::get().GetNetName());
