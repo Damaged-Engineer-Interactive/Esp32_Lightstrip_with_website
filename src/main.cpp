@@ -449,7 +449,29 @@ void strobo(){
   }
 }
 
-/* http://192.168.54.205/change?scene=5&red=0&green=0&blue=0&waittime=2 Ref. in README.md && scenes esp32.txt */
+void gradient(){
+  if(counter >= 10){
+    leds[counter] = CRGB(DynamicData::get().red, DynamicData::get().green, DynamicData::get().blue);
+    leds[counter-10] = CRBG::Black;
+  }
+  else if(counter < 10){
+    leds[(counter+133)-1] = CRGB::Black; //is -1 needed NEEDS TESTING!!
+    leds[counter] = CRGB(DynamicData::get().red, DynamicData::get().green, DynamicData::get().blue);
+  }
+  if(counter >= 143){
+    leds[counter-10] = CRGB::Black;
+    counter=1
+  }
+  if(counterended){
+    counter++;
+    counterended = !counterended;
+  }
+  endcounter++;
+  if(endcounter >= DynamicData::get().waittime){
+    counterended = !counterended;
+  }
+}
+/* http://192.168.54.205/change?scene=5&red=0&green=0&blue=0&waittime=2&brightness=0 Ref. in README.md && scenes esp32.txt */
 void loop() {
   checkNetworkSet();
   webPage.loop();

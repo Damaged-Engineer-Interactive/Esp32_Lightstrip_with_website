@@ -295,7 +295,7 @@ void WebPage::handleRoot() {
   message += "\t<p>ipaddress:  " + DynamicData::get().ipaddress + "</p>\n";
   message += "\t<p>Thanks for trying my site mate. Have a good day!";
   message += "\t<p>The values for <b> RGB </b> no longer reset and are actual values";
-  message += "\t<p>As mandated I have say a fair <i> <b> epilepsie warning </b> </i> for the scene(s) '6, 9' ";
+  message += "\t<p>As mandated I have say a fair <i> <b> epilepsie warning </b> </i> for the scene(s) '6', '7' &'8' ";
   message += "\t<p> For the scene <i> 11 </i> I recommend using a value over <i> 150 </i> as <b> waittime </b>";
   message += GenFooter();
   server.send(200, "text/html", message);
