@@ -455,7 +455,9 @@ void gradient(){
     leds[counter-25] = CRGB::Black;
   }
   else if(counter < 25){
-    leds[(counter+119)] = CRGB::Black; //is -1 needed NEEDS TESTING!!
+    leds[(counter+119)] = CRGB::Black;
+    leds[(counter+118)] = CRGB::Black;
+    leds[(counter+117)] = CRGB::Black;
     leds[counter] = CRGB(DynamicData::get().red, DynamicData::get().green, DynamicData::get().blue);
   }
 
@@ -463,8 +465,7 @@ void gradient(){
   FastLED.show();
   if(counter >= 143){
     leds[counter-25] = CRGB::Black;
-    leds[counter-26] = CRGB::Black;
-    leds[counter-27] = CRGB::Black;
+
     counter=1;
   }
   if(counterended){
