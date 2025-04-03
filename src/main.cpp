@@ -450,17 +450,22 @@ void strobo(){
 }
 
 void gradient(){
-  if(counter >= 10){
+  if(counter >= 25){
     leds[counter] = CRGB(DynamicData::get().red, DynamicData::get().green, DynamicData::get().blue);
-    leds[counter-10] = CRBG::Black;
+    leds[counter-25] = CRGB::Black;
   }
-  else if(counter < 10){
-    leds[(counter+133)-1] = CRGB::Black; //is -1 needed NEEDS TESTING!!
+  else if(counter < 25){
+    leds[(counter+119)] = CRGB::Black; //is -1 needed NEEDS TESTING!!
     leds[counter] = CRGB(DynamicData::get().red, DynamicData::get().green, DynamicData::get().blue);
   }
+
+  FastLED.setBrightness(DynamicData::get().brightness);
+  FastLED.show();
   if(counter >= 143){
-    leds[counter-10] = CRGB::Black;
-    counter=1
+    leds[counter-25] = CRGB::Black;
+    leds[counter-26] = CRGB::Black;
+    leds[counter-27] = CRGB::Black;
+    counter=1;
   }
   if(counterended){
     counter++;
@@ -469,6 +474,7 @@ void gradient(){
   endcounter++;
   if(endcounter >= DynamicData::get().waittime){
     counterended = !counterended;
+    endcounter = 0;
   }
 }
 /* http://192.168.54.205/change?scene=5&red=0&green=0&blue=0&waittime=2&brightness=0 Ref. in README.md && scenes esp32.txt */
@@ -518,6 +524,10 @@ void loop() {
   
   case 8:
     strobo();
+    break;
+  
+  case 9:
+    gradient();
     break;
   
   default:
