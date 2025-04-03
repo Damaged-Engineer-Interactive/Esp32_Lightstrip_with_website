@@ -259,6 +259,8 @@ void warpCoreMode() {
   leds[sevencounter] = CRGB(DynamicData::get().red, DynamicData::get().green, DynamicData::get().blue);
   leds[thrdcounter-1] = CRGB::Black;
   leds[thrdcounter] = CRGB(DynamicData::get().red, DynamicData::get().green, DynamicData::get().blue);
+  leds[fourcounter-1] = CRGB::Black;
+  leds[fourcounter] = CRGB(DynamicData::get().red, DynamicData::get().green, DynamicData::get().blue);
 
   FastLED.setBrightness(DynamicData::get().brightness);
   
@@ -267,6 +269,7 @@ void warpCoreMode() {
     counter++;
     sevencounter++;
     thrdcounter++;
+    fourcounter++;
     counterended = false;
   }
 
@@ -276,18 +279,23 @@ void warpCoreMode() {
     endcounter = 0;
   }
 
-  if(counter > 143){
+  if(counter > 143) {
     leds[counter-1] = CRGB::Black;
     counter = 1;
   }
 
-  if(sevencounter > 143){
+  if(sevencounter > 143) {
     leds[sevencounter-1] = CRGB::Black;
     sevencounter = 1;
   }
-  if(thrdcounter > 143){
+  if(thrdcounter > 143) {
     leds[thrdcounter-1] = CRGB::Black;
     thrdcounter = 1;
+  }
+
+  if(fourcounter > 143) {
+    leds[fourcounter-1] = CRGB::Black;
+    fourcounter = 1;
   }
 }
 
