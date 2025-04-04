@@ -478,6 +478,104 @@ void gradient(){
     endcounter = 0;
   }
 }
+
+void IndicatorRight(){
+  if(phase1&&counterended){
+    fill_solid(leds, NUM_PIXELS, CRGB::OrangeRed);
+  fill_solid(leds, NUM_PIXELS-25, CRGB::Black);
+    phase1 = false;
+    counterended = false;
+  }
+  
+  else if(!phase1&&counterended){
+    fill_solid(leds, NUM_PIXELS, CRGB::Black);
+    phase1 = true;
+    counterended = false;
+  }
+
+  FastLED.setBrightness(150);
+  FastLED.show(); 
+  endcounter++;
+
+  if(endcounter >= 175) {
+    counterended = true;
+    endcounter = 0;
+  }
+}
+
+void IndicatorLeft(){
+  if(phase1&&counterended){
+    fill_solid(leds, 25, CRGB::OrangeRed);
+    phase1 = false;
+    counterended = false;
+  }
+  
+  else if(!phase1&&counterended){
+    fill_solid(leds, NUM_PIXELS, CRGB::Black);
+    phase1 = true;
+    counterended = false;
+  }
+
+  FastLED.setBrightness(150);
+  FastLED.show(); 
+  endcounter++;
+
+  if(endcounter >= 175) {
+    counterended = true;
+    endcounter = 0;
+  }
+}
+
+void IndicatorRightHeadlight(){
+  if(phase1&&counterended){
+    fill_solid(leds, NUM_PIXELS, CRGB::Orange);
+  fill_solid(leds, NUM_PIXELS-25, CRGB::White);
+    phase1 = false;
+    counterended = false;
+  }
+  
+  else if(!phase1&&counterended){
+    fill_solid(leds, NUM_PIXELS, CRGB::Black);
+    fill_solid(leds, NUM_PIXELS-25, CRGB::White);
+    phase1 = true;
+    counterended = false;
+  }
+
+  FastLED.setBrightness(150);
+  FastLED.show(); 
+  endcounter++;
+
+  if(endcounter >= 175) {
+    counterended = true;
+    endcounter = 0;
+  }
+}
+
+void IndicatorLeftHeadlight(){
+  if(phase1&&counterended){
+    fill_solid(leds, 25, CRGB::Orange);
+  fill_solid(leds, NUM_PIXELS, CRGB::White);
+    phase1 = false;
+    counterended = false;
+  }
+  
+  else if(!phase1&&counterended){
+    fill_solid(leds, NUM_PIXELS, CRGB::White);
+    fill_solid(leds, 25, CRGB::Black);
+    phase1 = true;
+    counterended = false;
+  }
+
+  FastLED.setBrightness(150);
+  FastLED.show(); 
+  endcounter++;
+
+  if(endcounter >= 175) {
+    counterended = true;
+    endcounter = 0;
+  }
+}
+
 /* http://192.168.54.205/change?scene=5&red=0&green=0&blue=0&waittime=2&brightness=0 Ref. in README.md && scenes esp32.txt */
 void loop() {
   checkNetworkSet();
@@ -531,6 +629,22 @@ void loop() {
     gradient();
     break;
   
+  case 10:
+    IndicatorRight();
+    break;
+  
+    case 11:
+    IndicatorLeft();
+    break;
+
+    case 12:
+    IndicatorRightHeadlight();
+    break;
+
+    case 13:
+    IndicatorLeftHeadlight();
+    break;
+
   default:
     offline();
     break;
