@@ -535,7 +535,7 @@ void IndicatorRightHeadlight(){
   }
   
   else if(!phase1&&counterended){
-    fill_solid(leds, NUM_PIXELS-25, CRGB::White);
+    fill_solid(leds, NUM_PIXELS, CRGB::White);
     phase1 = true;
     counterended = false;
   }
@@ -552,8 +552,8 @@ void IndicatorRightHeadlight(){
 
 void IndicatorLeftHeadlight(){
   if(phase1&&counterended){
+    fill_solid(leds, NUM_PIXELS, CRGB::White);
     fill_solid(leds, 25, CRGB::Orange);
-  fill_solid(leds, NUM_PIXELS, CRGB::White);
     phase1 = false;
     counterended = false;
   }
