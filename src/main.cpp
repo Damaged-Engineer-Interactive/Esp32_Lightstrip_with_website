@@ -482,7 +482,7 @@ void gradient(){
 void IndicatorRight(){
   if(phase1&&counterended){
     fill_solid(leds, NUM_PIXELS, CRGB::OrangeRed);
-  fill_solid(leds, NUM_PIXELS-25, CRGB::Black);
+  fill_solid(leds, NUM_PIXELS-40, CRGB::Black);
     phase1 = false;
     counterended = false;
   }
@@ -505,7 +505,7 @@ void IndicatorRight(){
 
 void IndicatorLeft(){
   if(phase1&&counterended){
-    fill_solid(leds, 25, CRGB::OrangeRed);
+    fill_solid(leds, 40, CRGB::OrangeRed);
     phase1 = false;
     counterended = false;
   }
@@ -528,8 +528,8 @@ void IndicatorLeft(){
 
 void IndicatorRightHeadlight(){
   if(phase1&&counterended){
-    fill_solid(leds, NUM_PIXELS, CRGB::Orange);
-  fill_solid(leds, NUM_PIXELS-25, CRGB::White);
+    fill_solid(leds, NUM_PIXELS, CRGB::OrangeRed);
+  fill_solid(leds, NUM_PIXELS-40, CRGB::White);
     phase1 = false;
     counterended = false;
   }
@@ -553,7 +553,7 @@ void IndicatorRightHeadlight(){
 void IndicatorLeftHeadlight(){
   if(phase1&&counterended){
     fill_solid(leds, NUM_PIXELS, CRGB::White);
-    fill_solid(leds, 25, CRGB::Orange);
+    fill_solid(leds, 40, CRGB::OrangeRed);
     phase1 = false;
     counterended = false;
   }
