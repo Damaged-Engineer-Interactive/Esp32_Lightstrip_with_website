@@ -643,7 +643,7 @@ void HazardLightFast(){
   FastLED.show(); 
   endcounter++;
 
-  if(endcounter >= 75) {
+  if(endcounter >= 30) {
     counterended = true;
     endcounter = 0;
   }
