@@ -560,7 +560,56 @@ void IndicatorLeftHeadlight(){
   
   else if(!phase1&&counterended){
     fill_solid(leds, NUM_PIXELS, CRGB::White);
+    phase1 = true;
+    counterended = false;
+  }
 
+  FastLED.setBrightness(150);
+  FastLED.show(); 
+  endcounter++;
+
+  if(endcounter >= 175) {
+    counterended = true;
+    endcounter = 0;
+  }
+}
+
+void HazardHeadLight(){
+  if(phase1&&counterended){
+    fill_solid(leds, NUM_PIXELS, CRGB::OrangeRed);
+    fill_solid(leds, NUM_PIXELS-40, CRGB::White);
+    fill_solid(leds, 40, CRGB::OrangeRed);
+    phase1 = false;
+    counterended = false;
+  }
+  
+  else if(!phase1&&counterended){
+    fill_solid(leds, NUM_PIXELS, CRGB::White);
+    phase1 = true;
+    counterended = false;
+  }
+
+  FastLED.setBrightness(150);
+  FastLED.show(); 
+  endcounter++;
+
+  if(endcounter >= 175) {
+    counterended = true;
+    endcounter = 0;
+  }
+}
+
+void HazardLight(){
+  if(phase1&&counterended){
+    fill_solid(leds, NUM_PIXELS, CRGB::OrangeRed);
+    fill_solid(leds, NUM_PIXELS-40, CRGB::Black);
+    fill_solid(leds, 40, CRGB::OrangeRed);
+    phase1 = false;
+    counterended = false;
+  }
+  
+  else if(!phase1&&counterended){
+    fill_solid(leds, NUM_PIXELS, CRGB::Black);
     phase1 = true;
     counterended = false;
   }
@@ -587,7 +636,7 @@ void FarlightsHeadLight(){
   FastLED.show();
 }
 
-/* http://192.168.54.205/change?scene=5&red=0&green=0&blue=0&waittime=2&brightness=0 Ref. in README.md && scenes esp32.txt */
+/* http://192.168.54.147/change?scene=0&red=0&green=0&blue=0&waittime=2&brightness=150 Ref. in README.md && scenes esp32.txt */
 void loop() {
   checkNetworkSet();
   webPage.loop();
@@ -649,20 +698,29 @@ void loop() {
     break;
 
     case 12:
-    IndicatorRightHeadlight();
-    break;
+      HazardLight();
+      break;
 
     case 13:
-    IndicatorLeftHeadlight();
-    break;
+      IndicatorRightHeadlight();
+      break;
 
     case 14:
+      IndicatorLeftHeadlight();
+      break;
+
+    case 15:
+      HazardHeadLight();
+      break;
+
+    case 16:
     HeadlightNormal();
     break;
 
-    case 15:
+    case 17:
     FarlightsHeadLight();
     break;
+
   default:
     offline();
     break;
