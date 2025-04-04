@@ -624,6 +624,31 @@ void HazardLight(){
   }
 }
 
+void HazardLightFast(){
+  if(phase1&&counterended){
+    fill_solid(leds, NUM_PIXELS, CRGB::OrangeRed);
+    fill_solid(leds, NUM_PIXELS-40, CRGB::Black);
+    fill_solid(leds, 40, CRGB::OrangeRed);
+    phase1 = false;
+    counterended = false;
+  }
+  
+  else if(!phase1&&counterended){
+    fill_solid(leds, NUM_PIXELS, CRGB::Black);
+    phase1 = true;
+    counterended = false;
+  }
+
+  FastLED.setBrightness(150);
+  FastLED.show(); 
+  endcounter++;
+
+  if(endcounter >= 75) {
+    counterended = true;
+    endcounter = 0;
+  }
+}
+
 void HeadlightNormal(){
   fill_solid(leds, NUM_PIXELS, CRGB::White);
   FastLED.setBrightness(150);
@@ -693,32 +718,36 @@ void loop() {
     IndicatorRight();
     break;
   
-    case 11:
+  case 11:
     IndicatorLeft();
     break;
 
-    case 12:
-      HazardLight();
-      break;
+  case 12:
+    HazardLight();
+    break;
 
-    case 13:
-      IndicatorRightHeadlight();
-      break;
+  case 13:
+    IndicatorRightHeadlight();
+    break;
 
-    case 14:
-      IndicatorLeftHeadlight();
-      break;
+  case 14:
+    IndicatorLeftHeadlight();
+    break;
 
-    case 15:
-      HazardHeadLight();
-      break;
+  case 15:
+    HazardHeadLight();
+    break;
 
-    case 16:
+  case 16:
     HeadlightNormal();
     break;
 
-    case 17:
+  case 17:
     FarlightsHeadLight();
+    break;
+  
+  case 18:
+    HazardLightFast();
     break;
 
   default:
