@@ -575,6 +575,18 @@ void IndicatorLeftHeadlight(){
   }
 }
 
+void HeadlightNormal(){
+  fill_solid(leds, NUM_PIXELS, CRGB::White);
+  FastLED.setBrightness(150);
+  FastLED.show();
+}
+
+void FarlightsHeadLight(){
+  fill_solid(leds, NUM_PIXELS, CRGB::White);
+  FastLED.setBrightness(255);
+  FastLED.show();
+}
+
 /* http://192.168.54.205/change?scene=5&red=0&green=0&blue=0&waittime=2&brightness=0 Ref. in README.md && scenes esp32.txt */
 void loop() {
   checkNetworkSet();
@@ -644,6 +656,13 @@ void loop() {
     IndicatorLeftHeadlight();
     break;
 
+    case 14:
+    HeadlightNormal();
+    break;
+
+    case 15:
+    FarlightsHeadLight();
+    break;
   default:
     offline();
     break;
