@@ -449,7 +449,7 @@ void strobo(){
   }
 }
 
-void gradient(){
+void 25BlockLight(){
   if(counter >= 25){
     leds[counter] = CRGB(DynamicData::get().red, DynamicData::get().green, DynamicData::get().blue);
     leds[counter-25] = CRGB::Black;
@@ -711,7 +711,7 @@ void loop() {
     break;
   
   case 9:
-    gradient();
+    25BlockLight();
     break;
   
   case 10:
