@@ -39,7 +39,7 @@ bool counterhasended = false;
 bool counterTwoEnd = false;
 bool phase1 = false;
 
-//defined smth with these var.
+//defined Time and Delays
 static const int delayTime_ms = 5;
 static const int SECONDS_1 = 200;
 static const int SECONDS_10 = 2000;
