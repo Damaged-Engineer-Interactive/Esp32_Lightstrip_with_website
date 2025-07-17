@@ -40,7 +40,7 @@ bool counterhasended = false;
 bool counterTwoEnd = false;
 bool phase1 = false;
 
-//defined smth with these var.
+//defined Time and Delays
 static const int delayTime_ms = 5;
 static const int SECONDS_1 = 200;
 static const int SECONDS_10 = 2000;
@@ -344,7 +344,7 @@ void offline() {
 
 void RandomFlashingLights() {
   if (counterhasended && !counterended) {
-    randomNum = rand() % 144;
+    randomNum = rand() % NUM_PIXELS;
     leds[randomNum] = CRGB(DynamicData::get().red, DynamicData::get().green, DynamicData::get().blue);
     counterhasended = false;
     counterended = true;
@@ -375,16 +375,16 @@ void allOn() {
 
 void FullOnBlueBlackFlasher() {
   if (counterhasended && !counterended) {
-    fill_solid(leds, 72, CRGB::Black);
-    fill_solid(leds+72, 72, CRGB::Blue);
+    fill_solid(leds, NUM_PIXELS/2, CRGB::Black);
+    fill_solid(leds+NUM_PIXELS/2, NUM_PIXELS/2, CRGB::Blue);
     FastLED.setBrightness(DynamicData::get().brightness);
     FastLED.show();
     counterended = true;
     counterhasended = false;
   } 
   else if (counterended && counterhasended) {
-    fill_solid(leds, 72, CRGB::Blue);
-    fill_solid(leds+72, 72, CRGB::Black);
+    fill_solid(leds, NUM_PIXELS/2, CRGB::Blue);
+    fill_solid(leds+NUM_PIXELS/2, NUM_PIXELS/2, CRGB::Black);
     FastLED.setBrightness(DynamicData::get().brightness);
     counterended = false;
     counterhasended = false;
@@ -401,16 +401,16 @@ void FullOnBlueBlackFlasher() {
 
 void FullOnCustomBlackFlasher() {
   if (counterhasended && !counterended) {
-    fill_solid(leds, 72, CRGB::Black);
-    fill_solid(leds+72, 72, CRGB(DynamicData::get().red, DynamicData::get().green, DynamicData::get().blue));
+    fill_solid(leds, NUM_PIXELS/2, CRGB::Black);
+    fill_solid(leds+NUM_PIXELS/2, NUM_PIXELS/2, CRGB(DynamicData::get().red, DynamicData::get().green, DynamicData::get().blue));
     FastLED.setBrightness(DynamicData::get().brightness);
     FastLED.show();
     counterended = true;
     counterhasended = false;
   } 
   else if (counterended && counterhasended) {
-    fill_solid(leds, 72, CRGB(DynamicData::get().red, DynamicData::get().green, DynamicData::get().blue));
-    fill_solid(leds+72, 72, CRGB::Black);
+    fill_solid(leds, NUM_PIXELS/2, CRGB(DynamicData::get().red, DynamicData::get().green, DynamicData::get().blue));
+    fill_solid(leds+NUM_PIXELS/2, NUM_PIXELS/2, CRGB::Black);
     FastLED.setBrightness(DynamicData::get().brightness);
     counterended = false;
     counterhasended = false;
@@ -450,40 +450,10 @@ void strobo(){
   }
 }
 
-void gradient(){
-  if(counter >= 25){
-    leds[counter] = CRGB(DynamicData::get().red, DynamicData::get().green, DynamicData::get().blue);
-    leds[counter-25] = CRGB::Black;
-  }
-  else if(counter < 25){
-    leds[(counter+119)] = CRGB::Black;
-    leds[(counter+118)] = CRGB::Black;
-    leds[(counter+117)] = CRGB::Black;
-    leds[counter] = CRGB(DynamicData::get().red, DynamicData::get().green, DynamicData::get().blue);
-  }
-
-  FastLED.setBrightness(DynamicData::get().brightness);
-  FastLED.show();
-  if(counter >= 143){
-    leds[counter-25] = CRGB::Black;
-
-    counter=1;
-  }
-  if(counterended){
-    counter++;
-    counterended = !counterended;
-  }
-  endcounter++;
-  if(endcounter >= DynamicData::get().waittime){
-    counterended = !counterended;
-    endcounter = 0;
-  }
-}
-
 void IndicatorRight(){
   if(phase1&&counterended){
     fill_solid(leds, NUM_PIXELS, CRGB::OrangeRed);
-  fill_solid(leds, NUM_PIXELS-40, CRGB::Black);
+  fill_solid(leds, NUM_PIXELS-NUM_PIXELS/6, CRGB::Black);
     phase1 = false;
     counterended = false;
   }
@@ -506,7 +476,7 @@ void IndicatorRight(){
 
 void IndicatorLeft(){
   if(phase1&&counterended){
-    fill_solid(leds, 40, CRGB::OrangeRed);
+    fill_solid(leds, NUM_PIXELS/6, CRGB::OrangeRed);
     phase1 = false;
     counterended = false;
   }
@@ -530,7 +500,7 @@ void IndicatorLeft(){
 void IndicatorRightHeadlight(){
   if(phase1&&counterended){
     fill_solid(leds, NUM_PIXELS, CRGB::OrangeRed);
-  fill_solid(leds, NUM_PIXELS-40, CRGB::White);
+  fill_solid(leds, NUM_PIXELS-NUM_PIXELS/6, CRGB::White);
     phase1 = false;
     counterended = false;
   }
@@ -554,7 +524,7 @@ void IndicatorRightHeadlight(){
 void IndicatorLeftHeadlight(){
   if(phase1&&counterended){
     fill_solid(leds, NUM_PIXELS, CRGB::White);
-    fill_solid(leds, 40, CRGB::OrangeRed);
+    fill_solid(leds, NUM_PIXELS/6, CRGB::OrangeRed);
     phase1 = false;
     counterended = false;
   }
@@ -578,8 +548,8 @@ void IndicatorLeftHeadlight(){
 void HazardHeadLight(){
   if(phase1&&counterended){
     fill_solid(leds, NUM_PIXELS, CRGB::OrangeRed);
-    fill_solid(leds, NUM_PIXELS-40, CRGB::White);
-    fill_solid(leds, 40, CRGB::OrangeRed);
+    fill_solid(leds, NUM_PIXELS-NUM_PIXELS/6, CRGB::White);
+    fill_solid(leds, NUM_PIXELS/6, CRGB::OrangeRed);
     phase1 = false;
     counterended = false;
   }
@@ -603,8 +573,8 @@ void HazardHeadLight(){
 void HazardLight(){
   if(phase1&&counterended){
     fill_solid(leds, NUM_PIXELS, CRGB::OrangeRed);
-    fill_solid(leds, NUM_PIXELS-40, CRGB::Black);
-    fill_solid(leds, 40, CRGB::OrangeRed);
+    fill_solid(leds, NUM_PIXELS-NUM_PIXELS/6, CRGB::Black);
+    fill_solid(leds, NUM_PIXELS/6, CRGB::OrangeRed);
     phase1 = false;
     counterended = false;
   }
@@ -628,8 +598,8 @@ void HazardLight(){
 void HazardLightFast(){
   if(phase1&&counterended){
     fill_solid(leds, NUM_PIXELS, CRGB::OrangeRed);
-    fill_solid(leds, NUM_PIXELS-40, CRGB::Black);
-    fill_solid(leds, 40, CRGB::OrangeRed);
+    fill_solid(leds, NUM_PIXELS-NUM_PIXELS/6, CRGB::Black);
+    fill_solid(leds, NUM_PIXELS/6, CRGB::OrangeRed);
     phase1 = false;
     counterended = false;
   }
@@ -710,11 +680,12 @@ void loop() {
   case 8:
     strobo();
     break;
-  
+
   case 9:
-    gradient();
-    break;
-  
+    offline();
+    break
+
+
   case 10:
     IndicatorRight();
     break;
