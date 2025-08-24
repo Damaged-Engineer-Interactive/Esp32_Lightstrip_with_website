@@ -39,6 +39,7 @@ bool counterended = true;
 bool counterhasended = false;
 bool counterTwoEnd = false;
 bool phase1 = false;
+bool just_started = true;
 
 //defined Time and Delays
 static const int delayTime_ms = 5;
@@ -451,6 +452,10 @@ void strobo(){
 }
 
 void IndicatorRight(){
+    if(just_started){
+    phase1 = true;
+    just_started = false;
+  }
   if(phase1&&counterended){
     fill_solid(leds, NUM_PIXELS, CRGB::OrangeRed);
   fill_solid(leds, NUM_PIXELS-NUM_PIXELS/6, CRGB::Black);
@@ -464,7 +469,7 @@ void IndicatorRight(){
     counterended = false;
   }
 
-  FastLED.setBrightness(150);
+  FastLED.setBrightness(math.clamp(DynamicData::get().brightness, 150));
   FastLED.show(); 
   endcounter++;
 
@@ -475,6 +480,10 @@ void IndicatorRight(){
 }
 
 void IndicatorLeft(){
+  if(just_started){
+    phase1 = true;
+    just_started = false;
+  }
   if(phase1&&counterended){
     fill_solid(leds, NUM_PIXELS/6, CRGB::OrangeRed);
     phase1 = false;
@@ -487,7 +496,7 @@ void IndicatorLeft(){
     counterended = false;
   }
 
-  FastLED.setBrightness(150);
+  FastLED.setBrightness(math.clamp(DynamicData::get().brightness, 150));
   FastLED.show(); 
   endcounter++;
 
@@ -498,6 +507,10 @@ void IndicatorLeft(){
 }
 
 void IndicatorRightHeadlight(){
+    if(just_started){
+    phase1 = true;
+    just_started = false;
+  }
   if(phase1&&counterended){
     fill_solid(leds, NUM_PIXELS, CRGB::OrangeRed);
   fill_solid(leds, NUM_PIXELS-NUM_PIXELS/6, CRGB::White);
@@ -511,7 +524,7 @@ void IndicatorRightHeadlight(){
     counterended = false;
   }
 
-  FastLED.setBrightness(150);
+  FastLED.setBrightness(math.clamp(DynamicData::get().brightness, 150));
   FastLED.show(); 
   endcounter++;
 
@@ -522,6 +535,10 @@ void IndicatorRightHeadlight(){
 }
 
 void IndicatorLeftHeadlight(){
+    if(just_started){
+    phase1 = true;
+    just_started = false;
+  }
   if(phase1&&counterended){
     fill_solid(leds, NUM_PIXELS, CRGB::White);
     fill_solid(leds, NUM_PIXELS/6, CRGB::OrangeRed);
@@ -535,7 +552,7 @@ void IndicatorLeftHeadlight(){
     counterended = false;
   }
 
-  FastLED.setBrightness(150);
+  FastLED.setBrightness(math.clamp(DynamicData::get().brightness, 150));
   FastLED.show(); 
   endcounter++;
 
@@ -546,6 +563,10 @@ void IndicatorLeftHeadlight(){
 }
 
 void HazardHeadLight(){
+    if(just_started){
+    phase1 = true;
+    just_started = false;
+  }
   if(phase1&&counterended){
     fill_solid(leds, NUM_PIXELS, CRGB::OrangeRed);
     fill_solid(leds, NUM_PIXELS-NUM_PIXELS/6, CRGB::White);
@@ -560,7 +581,7 @@ void HazardHeadLight(){
     counterended = false;
   }
 
-  FastLED.setBrightness(150);
+  FastLED.setBrightness(math.clamp(DynamicData::get().brightness, 150));
   FastLED.show(); 
   endcounter++;
 
@@ -571,6 +592,10 @@ void HazardHeadLight(){
 }
 
 void HazardLight(){
+    if(just_started){
+    phase1 = true;
+    just_started = false;
+  }
   if(phase1&&counterended){
     fill_solid(leds, NUM_PIXELS, CRGB::OrangeRed);
     fill_solid(leds, NUM_PIXELS-NUM_PIXELS/6, CRGB::Black);
@@ -585,7 +610,7 @@ void HazardLight(){
     counterended = false;
   }
 
-  FastLED.setBrightness(150);
+  FastLED.setBrightness(math.clamp(DynamicData::get().brightness, 150));
   FastLED.show(); 
   endcounter++;
 
@@ -596,6 +621,10 @@ void HazardLight(){
 }
 
 void HazardLightFast(){
+    if(just_started){
+    phase1 = true;
+    just_started = false;
+  }
   if(phase1&&counterended){
     fill_solid(leds, NUM_PIXELS, CRGB::OrangeRed);
     fill_solid(leds, NUM_PIXELS-NUM_PIXELS/6, CRGB::Black);
@@ -610,7 +639,7 @@ void HazardLightFast(){
     counterended = false;
   }
 
-  FastLED.setBrightness(150);
+  FastLED.setBrightness(math.clamp(DynamicData::get().brightness, 150));
   FastLED.show(); 
   endcounter++;
 
@@ -622,13 +651,13 @@ void HazardLightFast(){
 
 void HeadlightNormal(){
   fill_solid(leds, NUM_PIXELS, CRGB::White);
-  FastLED.setBrightness(150);
+  FastLED.setBrightness(math.clamp((DynamicData::get().brightness), 150));
   FastLED.show();
 }
 
 void FarlightsHeadLight(){
   fill_solid(leds, NUM_PIXELS, CRGB::White);
-  FastLED.setBrightness(255);
+  FastLED.setBrightness(math.clamp((DynamicData::get().brightness*2), 255));
   FastLED.show();
 }
 
@@ -638,6 +667,7 @@ void loop() {
   webPage.loop();
   if(oldScene != DynamicData::get().scene) {
     offline();
+    just_started = true;
     
   }
   oldScene = DynamicData::get().scene;
@@ -683,7 +713,7 @@ void loop() {
 
   case 9:
     offline();
-    break
+    break;
 
 
   case 10:
