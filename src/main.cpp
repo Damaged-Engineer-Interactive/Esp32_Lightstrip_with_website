@@ -23,7 +23,6 @@ int scndcounter = 80;
 int thrdcounter = 120;
 int fourcounter = 40;
 int sevencounter = 60;
-int countereight = 100;
 const int c11 = 20;
 const int c12 = 80;
 const int c13 = 120;
@@ -37,7 +36,6 @@ int secondEndTimer = 0;
 int oldScene = 0;
 bool counterended = true;
 bool counterhasended = false;
-bool counterTwoEnd = false;
 bool phase1 = false;
 bool just_started = true;
 
@@ -458,7 +456,7 @@ void IndicatorRight(){
   }
   if(phase1&&counterended){
     fill_solid(leds, NUM_PIXELS, CRGB::OrangeRed);
-  fill_solid(leds, NUM_PIXELS-NUM_PIXELS/6, CRGB::Black);
+    fill_solid(leds, NUM_PIXELS-NUM_PIXELS/6, CRGB::Black);
     phase1 = false;
     counterended = false;
   }
@@ -469,7 +467,7 @@ void IndicatorRight(){
     counterended = false;
   }
 
-  FastLED.setBrightness(math.clamp(DynamicData::get().brightness, 150));
+  FastLED.setBrightness(constrain(DynamicData::get().brightness, 0, 150));
   FastLED.show(); 
   endcounter++;
 
@@ -496,7 +494,7 @@ void IndicatorLeft(){
     counterended = false;
   }
 
-  FastLED.setBrightness(math.clamp(DynamicData::get().brightness, 150));
+  FastLED.setBrightness(constrain(DynamicData::get().brightness, 0, 150));
   FastLED.show(); 
   endcounter++;
 
@@ -513,7 +511,7 @@ void IndicatorRightHeadlight(){
   }
   if(phase1&&counterended){
     fill_solid(leds, NUM_PIXELS, CRGB::OrangeRed);
-  fill_solid(leds, NUM_PIXELS-NUM_PIXELS/6, CRGB::White);
+    fill_solid(leds, NUM_PIXELS-NUM_PIXELS/6, CRGB::White);
     phase1 = false;
     counterended = false;
   }
@@ -524,7 +522,7 @@ void IndicatorRightHeadlight(){
     counterended = false;
   }
 
-  FastLED.setBrightness(math.clamp(DynamicData::get().brightness, 150));
+  FastLED.setBrightness(constrain(DynamicData::get().brightness, 0, 150));
   FastLED.show(); 
   endcounter++;
 
@@ -552,7 +550,7 @@ void IndicatorLeftHeadlight(){
     counterended = false;
   }
 
-  FastLED.setBrightness(math.clamp(DynamicData::get().brightness, 150));
+  FastLED.setBrightness(constrain(DynamicData::get().brightness, 0, 150));
   FastLED.show(); 
   endcounter++;
 
@@ -581,7 +579,7 @@ void HazardHeadLight(){
     counterended = false;
   }
 
-  FastLED.setBrightness(math.clamp(DynamicData::get().brightness, 150));
+  FastLED.setBrightness(constrain(DynamicData::get().brightness, 0, 150));
   FastLED.show(); 
   endcounter++;
 
@@ -610,7 +608,7 @@ void HazardLight(){
     counterended = false;
   }
 
-  FastLED.setBrightness(math.clamp(DynamicData::get().brightness, 150));
+  FastLED.setBrightness(constrain(DynamicData::get().brightness, 0, 150));
   FastLED.show(); 
   endcounter++;
 
@@ -639,7 +637,7 @@ void HazardLightFast(){
     counterended = false;
   }
 
-  FastLED.setBrightness(math.clamp(DynamicData::get().brightness, 150));
+  FastLED.setBrightness(constrain(DynamicData::get().brightness, 0, 150));
   FastLED.show(); 
   endcounter++;
 
@@ -651,13 +649,13 @@ void HazardLightFast(){
 
 void HeadlightNormal(){
   fill_solid(leds, NUM_PIXELS, CRGB::White);
-  FastLED.setBrightness(math.clamp((DynamicData::get().brightness), 150));
+  FastLED.setBrightness(constrain(DynamicData::get().brightness, 0, 150));
   FastLED.show();
 }
 
 void FarlightsHeadLight(){
   fill_solid(leds, NUM_PIXELS, CRGB::White);
-  FastLED.setBrightness(math.clamp((DynamicData::get().brightness*2), 255));
+  FastLED.setBrightness(constrain(DynamicData::get().brightness*2, 0, 255));
   FastLED.show();
 }
 
