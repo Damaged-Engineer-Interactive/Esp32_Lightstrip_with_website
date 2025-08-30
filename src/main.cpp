@@ -15,7 +15,7 @@ WebPage webPage;
 #define PIN_WS2812B 2
 #define NUM_PIXELS 144
 
-//too many variables but they are needed ig...
+// LED array and other variables
 CRGB leds[NUM_PIXELS];
 const int number = 143;
 int counter = 20;
