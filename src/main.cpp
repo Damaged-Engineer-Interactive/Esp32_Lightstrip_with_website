@@ -39,6 +39,7 @@ bool counterended = true;
 bool counterhasended = false;
 bool counterTwoEnd = false;
 bool phase1 = false;
+bool just_started = true;
 
 //defined Time and Delays
 static const int delayTime_ms = 5;
@@ -451,6 +452,9 @@ void strobo(){
 }
 
 void IndicatorRight(){
+    if(just_started){
+    phase1 = true;
+  }
   if(phase1&&counterended){
     fill_solid(leds, NUM_PIXELS, CRGB::OrangeRed);
   fill_solid(leds, NUM_PIXELS-NUM_PIXELS/6, CRGB::Black);
@@ -475,6 +479,9 @@ void IndicatorRight(){
 }
 
 void IndicatorLeft(){
+  if(just_started){
+    phase1 = true;
+  }
   if(phase1&&counterended){
     fill_solid(leds, NUM_PIXELS/6, CRGB::OrangeRed);
     phase1 = false;
@@ -498,6 +505,9 @@ void IndicatorLeft(){
 }
 
 void IndicatorRightHeadlight(){
+    if(just_started){
+    phase1 = true;
+  }
   if(phase1&&counterended){
     fill_solid(leds, NUM_PIXELS, CRGB::OrangeRed);
   fill_solid(leds, NUM_PIXELS-NUM_PIXELS/6, CRGB::White);
@@ -522,6 +532,9 @@ void IndicatorRightHeadlight(){
 }
 
 void IndicatorLeftHeadlight(){
+    if(just_started){
+    phase1 = true;
+  }
   if(phase1&&counterended){
     fill_solid(leds, NUM_PIXELS, CRGB::White);
     fill_solid(leds, NUM_PIXELS/6, CRGB::OrangeRed);
@@ -546,6 +559,9 @@ void IndicatorLeftHeadlight(){
 }
 
 void HazardHeadLight(){
+    if(just_started){
+    phase1 = true;
+  }
   if(phase1&&counterended){
     fill_solid(leds, NUM_PIXELS, CRGB::OrangeRed);
     fill_solid(leds, NUM_PIXELS-NUM_PIXELS/6, CRGB::White);
@@ -571,6 +587,9 @@ void HazardHeadLight(){
 }
 
 void HazardLight(){
+    if(just_started){
+    phase1 = true;
+  }
   if(phase1&&counterended){
     fill_solid(leds, NUM_PIXELS, CRGB::OrangeRed);
     fill_solid(leds, NUM_PIXELS-NUM_PIXELS/6, CRGB::Black);
@@ -596,6 +615,9 @@ void HazardLight(){
 }
 
 void HazardLightFast(){
+    if(just_started){
+    phase1 = true;
+  }
   if(phase1&&counterended){
     fill_solid(leds, NUM_PIXELS, CRGB::OrangeRed);
     fill_solid(leds, NUM_PIXELS-NUM_PIXELS/6, CRGB::Black);
@@ -638,6 +660,7 @@ void loop() {
   webPage.loop();
   if(oldScene != DynamicData::get().scene) {
     offline();
+    just_started = true;
     
   }
   oldScene = DynamicData::get().scene;
@@ -683,7 +706,7 @@ void loop() {
 
   case 9:
     offline();
-    break
+    break;
 
 
   case 10:

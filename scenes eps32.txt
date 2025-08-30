@@ -1,3 +1,5 @@
+# Random Stuff
+
 0: twoPhaseWithTraffic
 1: trafficAdvisor
 2: twoPhaseLight (cop lights)
@@ -7,7 +9,17 @@
 6: FUllLightFlash (80 leds in a rythim)
 7: fillsolid (80 custom color)
 8: twoPhaseCustomLights (Alternates between {color} and black)
-9: randomFlashingLights (alternates between random spots (0 to 144))
-10: allOn (all Num_pixel (144) go on with the specified color).
-11: fullLightRedBlueLight (waittime set by website color predeterment)
-default (over 11): offline (all LEDs black (transition also))
+9: offline?
+
+# Traffic devices
+
+10:IndicatorRight
+11:IndicatorLeft
+12:HazardLight
+13:IndicatorRightHeadlight
+14:IndicatorLeftHeadlight
+15:HazardHeadLight
+16:HeadlightNormal
+17:FarlightsHeadLight
+18:HazardLightFast
+default (over 18): offline (all LEDs black (as transition aswell))
