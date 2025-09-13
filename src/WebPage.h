@@ -146,19 +146,34 @@ void WebPage::handleChange() {
       message = "I dont exist";
     }
     else if (server.argName(i) == "red") {
-      DynamicData::get().red =  server.arg(i).toInt();
+      int redValue = server.arg(i).toInt();
+      if (redValue > 255) redValue = 255;
+      if (redValue < 0) redValue = 0;
+      DynamicData::get().red = redValue;
     }
     else if (server.argName(i) == "green") {
-      DynamicData::get().green =  server.arg(i).toInt();
+      int greenValue = server.arg(i).toInt();
+      if (greenValue > 255) greenValue = 255;
+      if (greenValue < 0) greenValue = 0;
+      DynamicData::get().green = greenValue;
     }
     else if (server.argName(i) == "blue") {
-      DynamicData::get().blue =  server.arg(i).toInt();
+      int blueValue = server.arg(i).toInt();
+      if (blueValue > 255) blueValue = 255;
+      if (blueValue < 0) blueValue = 0;
+      DynamicData::get().blue = blueValue;
     }
     else if (server.argName(i) == "waittime") {
-      DynamicData::get().waittime =  server.arg(i).toInt();
+      int waittimeValue = server.arg(i).toInt();
+      if (waittimeValue > 255) waittimeValue = 255;
+      if (waittimeValue < 0) waittimeValue = 0;
+      DynamicData::get().waittime = waittimeValue;
     }
     else if (server.argName(i) == "brightness"){
-      DynamicData::get().brightness = server.arg(i).toInt();
+      int brightnessValue = server.arg(i).toInt();
+      if (brightnessValue > 255) brightnessValue = 255;
+      if (brightnessValue < 0) brightnessValue = 0;
+      DynamicData::get().brightness = brightnessValue;
     }
   }
   if ((netPasswordSet == true)&&(netNameSet == true))
