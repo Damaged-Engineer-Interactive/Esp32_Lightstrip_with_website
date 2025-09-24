@@ -13,24 +13,36 @@
 WebPage webPage;
 
 #define PIN_WS2812B 2
-#define NUM_PIXELS 144
+#define NUM_PIXELS 144 //change this to the number of LEDs in your strip
 
 // LED array and other variables
 CRGB leds[NUM_PIXELS];
-const int number = NUM_PIXELS-1;
 int counter = 20;
 int scndcounter = 80;
 int thrdcounter = 120;
 int fourcounter = 40;
 int sevencounter = 60;
-const int c11 = 20;
-const int c12 = 80;
-const int c13 = 120;
-const int c14 = 40;
-const int c17 = 60;
-const int c18 = 100;
+//test start
+// scale a reference index (designed for 144 pixels) to the current NUM_PIXELS
+static int scaled_index(int referenceIndex) {
+  // Use integer math with rounding: (NUM_PIXELS * reference + base/2) / base
+  const int base = 144; // original reference length
+  int v = (NUM_PIXELS * referenceIndex + base/2) / base;
+  if (v < 1) v = 1;
+  if (v > NUM_PIXELS - 1) v = NUM_PIXELS - 1;
+  return v;
+}
+
+int c11 = scaled_index(20);
+int c12 = scaled_index(80);
+int c13 = scaled_index(120);
+int c14 = scaled_index(40);
+int c17 = scaled_index(60);
+int c18 = scaled_index(100);
+
+//Light variables (setup for the scenes)
 int randomNum = 0;
-int dirtybit = 142;
+int dirtybit = NUM_PIXELS-2;
 int endcounter = 0;
 int secondEndTimer = 0;
 int oldScene = 0;
@@ -157,41 +169,36 @@ void lightStripTrafficAdvisor() {
     endcounter = 0;
   }
   if(counter < 2) {
-    leds[number] = CRGB::Black;
+    leds[NUM_PIXELS-1] = CRGB::Black;
   }
-
   else{
     leds[counter-2] = CRGB::Black;
   }
 
   if(sevencounter < 2) {
-    leds[number] = CRGB::Black;
+    leds[NUM_PIXELS-1] = CRGB::Black;
   }
-
   else{
     leds[sevencounter-2] = CRGB::Black;
   }
 
   if(scndcounter < 2){
-    leds[number] = CRGB::Black;
+    leds[NUM_PIXELS-1] = CRGB::Black;
   }
-
   else{
     leds[scndcounter-2] = CRGB::Black;
   }
 
   if(thrdcounter < 2){
-    leds[number] = CRGB::Black;
+    leds[NUM_PIXELS-1] = CRGB::Black;
   }
-
   else{
     leds[thrdcounter-2] = CRGB::Black;
   }
 
   if(fourcounter < 2){
-    leds[number] = CRGB::Black;
+    leds[NUM_PIXELS-1] = CRGB::Black;
   }
-
   else{
     leds[fourcounter-2] = CRGB::Black;
   }
