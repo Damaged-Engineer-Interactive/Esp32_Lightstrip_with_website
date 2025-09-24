@@ -65,7 +65,6 @@ void WebPage::Init() {
 
 String WebPage::GenHeader(int redirectTime, bool redirect)
 {
-    Serial.println(redirectTime);
     String message = "";
     message += "<html><head>";
     if (redirect)
