@@ -17,7 +17,7 @@ WebPage webPage;
 
 // LED array and other variables
 CRGB leds[NUM_PIXELS];
-const int number = 143;
+const int number = NUM_PIXELS-1;
 int counter = 20;
 int scndcounter = 80;
 int thrdcounter = 120;
@@ -221,31 +221,31 @@ void lightStripTrafficAdvisor() {
     counterhasended = false;
 	}
 
-  if(fourcounter >= 143){
+  if(fourcounter >= NUM_PIXELS-1){
     leds[fourcounter-1] = CRGB::Black;
     fourcounter = 1;
     leds[dirtybit] = CRGB::Black;
   }
 
-  if(sevencounter >= 143){
+  if(sevencounter >= NUM_PIXELS-1){
     leds[sevencounter-1] = CRGB::Black;
     sevencounter = 1;
     leds[dirtybit] = CRGB::Black;
   }
 
-  if(scndcounter >= 143){
+  if(scndcounter >= NUM_PIXELS-1){
     leds[scndcounter-1] = CRGB::Black;
     scndcounter = 1;
     leds[dirtybit] = CRGB::Black;
   }
 
-  if(thrdcounter >= 143){
+  if(thrdcounter >= NUM_PIXELS-1){
     leds[thrdcounter-1] = CRGB::Black;
     thrdcounter = 1;
     leds[dirtybit] = CRGB::Black;
   }
 
-  if(counter >= 143){
+  if(counter >= NUM_PIXELS-1){
     leds[counter-1] = CRGB::Black;
     counter = 1;
     leds[dirtybit] = CRGB::Black;
@@ -279,21 +279,21 @@ void warpCoreMode() {
     endcounter = 0;
   }
 
-  if(counter > 143) {
+  if(counter > NUM_PIXELS-1) {
     leds[counter-1] = CRGB::Black;
     counter = 1;
   }
 
-  if(sevencounter > 143) {
+  if(sevencounter > NUM_PIXELS-1) {
     leds[sevencounter-1] = CRGB::Black;
     sevencounter = 1;
   }
-  if(thrdcounter > 143) {
+  if(thrdcounter > NUM_PIXELS-1) {
     leds[thrdcounter-1] = CRGB::Black;
     thrdcounter = 1;
   }
 
-  if(fourcounter > 143) {
+  if(fourcounter > NUM_PIXELS-1) {
     leds[fourcounter-1] = CRGB::Black;
     fourcounter = 1;
   }
