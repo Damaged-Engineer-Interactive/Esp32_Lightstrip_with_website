@@ -706,7 +706,6 @@ void loop() {
     offline();
     break;
 
-
   case 10:
     IndicatorRight();
     break;
