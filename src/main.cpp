@@ -148,11 +148,11 @@ void twoPhaseLights() {
   FastLED.show(); 
   endcounter++;
 
-  if(endcounter == 249) {
+  if(endcounter == DynamicData::get().waittime-1) {
     counterhasended = true;
   }
 
-  if(endcounter >=250) {
+  if(endcounter >= DynamicData::get().waittime) {
     counterended = true;
     endcounter = 0;
   }
@@ -160,11 +160,11 @@ void twoPhaseLights() {
 
 void lightStripTrafficAdvisor() {
 
-  if(endcounter == 249) {
+  if(endcounter == DynamicData::get().waittime-1) {
     counterhasended = true;
   }
 
-  if(endcounter >=250) {
+  if(endcounter >= DynamicData::get().waittime) {
     counterended = true;
     endcounter = 0;
   }
@@ -333,11 +333,11 @@ void twoPhaseLightCusomColor() {
   FastLED.show(); 
   endcounter++;
 
-  if(endcounter == 249) {
+  if(endcounter == DynamicData::get().waittime-1) {
     counterhasended = true;
   }
 
-  if(endcounter >=250) {
+  if(endcounter >= DynamicData::get().waittime) {
     counterended = true;
     endcounter = 0;
   }
