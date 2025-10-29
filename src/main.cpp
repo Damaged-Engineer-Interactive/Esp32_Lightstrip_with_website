@@ -49,7 +49,6 @@ int oldScene = 0;
 bool counterended = true;
 bool counterhasended = false;
 bool phase1 = false;
-bool just_started = true;
 
 //defined Time and Delays
 static const int delayTime_ms = 5;
@@ -457,9 +456,6 @@ void strobo(){
 }
 
 void IndicatorRight(){
-    if(just_started){
-    phase1 = true;
-  }
   if(phase1&&counterended){
     fill_solid(leds, NUM_PIXELS, CRGB::OrangeRed);
     fill_solid(leds, NUM_PIXELS-NUM_PIXELS/6, CRGB::Black);
@@ -484,9 +480,6 @@ void IndicatorRight(){
 }
 
 void IndicatorLeft(){
-  if(just_started){
-    phase1 = true;
-  }
   if(phase1&&counterended){
     fill_solid(leds, NUM_PIXELS/6, CRGB::OrangeRed);
     phase1 = false;
@@ -510,10 +503,7 @@ void IndicatorLeft(){
 }
 
 void IndicatorRightHeadlight(){
-    if(just_started){
-    phase1 = true;
-  }
-  if(phase1&&counterended){
+    if(phase1&&counterended){
     fill_solid(leds, NUM_PIXELS, CRGB::OrangeRed);
     fill_solid(leds, NUM_PIXELS-NUM_PIXELS/6, CRGB::White);
     phase1 = false;
@@ -537,10 +527,7 @@ void IndicatorRightHeadlight(){
 }
 
 void IndicatorLeftHeadlight(){
-    if(just_started){
-    phase1 = true;
-  }
-  if(phase1&&counterended){
+    if(phase1&&counterended){
     fill_solid(leds, NUM_PIXELS, CRGB::White);
     fill_solid(leds, NUM_PIXELS/6, CRGB::OrangeRed);
     phase1 = false;
@@ -564,10 +551,7 @@ void IndicatorLeftHeadlight(){
 }
 
 void HazardHeadLight(){
-    if(just_started){
-    phase1 = true;
-  }
-  if(phase1&&counterended){
+    if(phase1&&counterended){
     fill_solid(leds, NUM_PIXELS, CRGB::OrangeRed);
     fill_solid(leds, NUM_PIXELS-NUM_PIXELS/6, CRGB::White);
     fill_solid(leds, NUM_PIXELS/6, CRGB::OrangeRed);
@@ -592,10 +576,7 @@ void HazardHeadLight(){
 }
 
 void HazardLight(){
-    if(just_started){
-    phase1 = true;
-  }
-  if(phase1&&counterended){
+    if(phase1&&counterended){
     fill_solid(leds, NUM_PIXELS, CRGB::OrangeRed);
     fill_solid(leds, NUM_PIXELS-NUM_PIXELS/6, CRGB::Black);
     fill_solid(leds, NUM_PIXELS/6, CRGB::OrangeRed);
@@ -620,10 +601,7 @@ void HazardLight(){
 }
 
 void HazardLightFast(){
-    if(just_started){
-    phase1 = true;
-  }
-  if(phase1&&counterended){
+    if(phase1&&counterended){
     fill_solid(leds, NUM_PIXELS, CRGB::OrangeRed);
     fill_solid(leds, NUM_PIXELS-NUM_PIXELS/6, CRGB::Black);
     fill_solid(leds, NUM_PIXELS/6, CRGB::OrangeRed);
@@ -665,8 +643,8 @@ void loop() {
   webPage.loop();
   if(oldScene != DynamicData::get().scene) {
     offline();
-    just_started = true;
-    endcounter = 0; // <-- reset counter on scene change
+    endcounter = 0;
+    phase1 = true;
   }
   oldScene = DynamicData::get().scene;
   switch (DynamicData::get().scene)
@@ -710,42 +688,38 @@ void loop() {
     break;
 
   case 9:
-    offline();
-    break;
-
-  case 10:
     IndicatorRight();
     break;
   
-  case 11:
+  case 10:
     IndicatorLeft();
     break;
 
-  case 12:
+  case 11:
     HazardLight();
     break;
 
-  case 13:
+  case 12:
     IndicatorRightHeadlight();
     break;
 
-  case 14:
+  case 13:
     IndicatorLeftHeadlight();
     break;
 
-  case 15:
+  case 14:
     HazardHeadLight();
     break;
 
-  case 16:
+  case 15:
     HeadlightNormal();
     break;
 
-  case 17:
+  case 16:
     FarlightsHeadLight();
     break;
   
-  case 18:
+  case 17:
     HazardLightFast();
     break;
 
