@@ -147,31 +147,29 @@ void WebPage::handleChange() {
     else if (server.argName(i) == "red") {
       int redValue = server.arg(i).toInt();
       if (redValue > 255) redValue = 255;
-      if (redValue < 0) redValue = 0;
+      else if (redValue < 0) redValue = 0;
       DynamicData::get().red = redValue;
     }
     else if (server.argName(i) == "green") {
       int greenValue = server.arg(i).toInt();
       if (greenValue > 255) greenValue = 255;
-      if (greenValue < 0) greenValue = 0;
+      else if (greenValue < 0) greenValue = 0;
       DynamicData::get().green = greenValue;
     }
     else if (server.argName(i) == "blue") {
       int blueValue = server.arg(i).toInt();
       if (blueValue > 255) blueValue = 255;
-      if (blueValue < 0) blueValue = 0;
+      else if (blueValue < 0) blueValue = 0;
       DynamicData::get().blue = blueValue;
     }
     else if (server.argName(i) == "waittime") {
       int waittimeValue = server.arg(i).toInt();
-      if (waittimeValue > 255) waittimeValue = 255;
-      if (waittimeValue < 0) waittimeValue = 0;
       DynamicData::get().waittime = waittimeValue;
     }
     else if (server.argName(i) == "brightness"){
       int brightnessValue = server.arg(i).toInt();
       if (brightnessValue > 255) brightnessValue = 255;
-      if (brightnessValue < 0) brightnessValue = 0;
+      else if (brightnessValue < 0) brightnessValue = 0;
       DynamicData::get().brightness = brightnessValue;
     }
   }

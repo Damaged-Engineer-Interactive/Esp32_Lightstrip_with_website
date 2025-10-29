@@ -666,7 +666,7 @@ void loop() {
   if(oldScene != DynamicData::get().scene) {
     offline();
     just_started = true;
-    
+    endcounter = 0; // <-- reset counter on scene change
   }
   oldScene = DynamicData::get().scene;
   switch (DynamicData::get().scene)
