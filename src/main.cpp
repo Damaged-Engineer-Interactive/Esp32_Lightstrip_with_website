@@ -684,46 +684,42 @@ void loop() {
     break;
 
   case 8:
-    FullOnCustomBlackFlasher();
-    break;
-  
-  case 9:
     strobo();
     break;
 
-  case 10:
+  case 9:
     IndicatorRight();
     break;
 
-  case 11:
+  case 10:
     IndicatorLeft();
     break;
 
-  case 12:
+  case 11:
     HazardLight();
     break;
 
-  case 13:
+  case 12:
     IndicatorRightHeadlight();
     break;
 
-  case 14:
+  case 13:
     IndicatorLeftHeadlight();
     break;
 
-  case 15:
+  case 14:
     HazardHeadLight();
     break;
 
-  case 16:
+  case 15:
     HeadlightNormal();
     break;
 
-  case 17:
+  case 16:
     FarlightsHeadLight();
     break;
 
-  case 18:
+  case 17:
     HazardLightFast();
     break;
 
