@@ -456,22 +456,24 @@ void strobo(){
 }
 
 void BlinkingLights(){
-  if (counterhasended && !counterended) {
+  if (counterhasended) {
     fill_solid(leds, NUM_PIXELS, CRGB(DynamicData::get().red, DynamicData::get().green, DynamicData::get().blue));
     FastLED.setBrightness(DynamicData::get().brightness);
     counterhasended = false;
-    counterended = true;
+    phase1 = false;
     FastLED.show();
   } 
-  else if (counterended && counterhasended) {
+  else if (counterhasended) {
     fill_solid(leds, NUM_PIXELS, CRGB::Black);
     counterended = false;
     counterhasended = false;
+    phase1 = true;
     FastLED.show();
   }
   endcounter++;
   if (endcounter >=DynamicData::get().waittime){
     endcounter=0;
+    counterhasended = true;
   }
 }
 
