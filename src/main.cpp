@@ -455,6 +455,26 @@ void strobo(){
   }
 }
 
+void BlinkingLights(){
+  if (counterhasended && !counterended) {
+    fill_solid(leds, NUM_PIXELS, CRGB(DynamicData::get().red, DynamicData::get().green, DynamicData::get().blue));
+    FastLED.setBrightness(DynamicData::get().brightness);
+    counterhasended = false;
+    counterended = true;
+    FastLED.show();
+  } 
+  else if (counterended && counterhasended) {
+    fill_solid(leds, NUM_PIXELS, CRGB::Black);
+    counterended = false;
+    counterhasended = false;
+    FastLED.show();
+  }
+  endcounter++;
+  if (endcounter >=DynamicData::get().waittime){
+    endcounter=0;
+  }
+}
+
 void IndicatorRight(){
   if(phase1&&counterended){
     fill_solid(leds, NUM_PIXELS, CRGB::OrangeRed);
@@ -671,7 +691,7 @@ void loop() {
     FullOnBlueBlackFlasher();
     break;
 
-    case 5:
+  case 5:
     FullOnCustomBlackFlasher();
     break;
   
@@ -686,40 +706,44 @@ void loop() {
   case 8:
     strobo();
     break;
-
+  
   case 9:
-    IndicatorRight();
+    BlinkingLights();
     break;
 
   case 10:
-    IndicatorLeft();
+    IndicatorRight();
     break;
 
   case 11:
-    HazardLight();
+    IndicatorLeft();
     break;
 
   case 12:
-    IndicatorRightHeadlight();
+    HazardLight();
     break;
 
   case 13:
-    IndicatorLeftHeadlight();
+    IndicatorRightHeadlight();
     break;
 
   case 14:
-    HazardHeadLight();
+    IndicatorLeftHeadlight();
     break;
 
   case 15:
-    HeadlightNormal();
+    HazardHeadLight();
     break;
 
   case 16:
-    FarlightsHeadLight();
+    HeadlightNormal();
     break;
 
   case 17:
+    FarlightsHeadLight();
+    break;
+
+  case 18:
     HazardLightFast();
     break;
 
