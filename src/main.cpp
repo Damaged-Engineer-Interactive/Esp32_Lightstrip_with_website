@@ -305,7 +305,7 @@ void warpCoreMode() {
   }
 }
 
-void twoPhaseLightCusomColor() {
+void twoPhaseLightCustomColor() {
   if(phase1&&counterended){
     leds[c12-5] = leds[c14-5] = leds[c18-5] = CRGB::Black;
     leds[c11-5] = leds[c13-5] = leds[c17-5] = CRGB(DynamicData::get().red,DynamicData::get().green,DynamicData::get().blue);
@@ -664,11 +664,11 @@ void loop() {
     break;
 
   case 3:
-    twoPhaseLightCusomColor();
+    twoPhaseLightCustomColor();
     break;
 
   case 4: 
-    RandomFlashingLights();
+    FullOnBlueBlackFlasher();
     break;
   
   case 5:
@@ -676,7 +676,7 @@ void loop() {
     break;
   
   case 6:
-    FullOnBlueBlackFlasher();
+    RandomFlashingLights();
     break;
 
   case 7:
