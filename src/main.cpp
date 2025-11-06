@@ -456,14 +456,14 @@ void strobo(){
 }
 
 void BlinkingLights(){
-  if (counterhasended) {
+  if (counterhasended && phase1) {
     fill_solid(leds, NUM_PIXELS, CRGB(DynamicData::get().red, DynamicData::get().green, DynamicData::get().blue));
     FastLED.setBrightness(DynamicData::get().brightness);
     counterhasended = false;
     phase1 = false;
     FastLED.show();
   } 
-  else if (counterhasended) {
+  else if (counterhasended && !phase1) {
     fill_solid(leds, NUM_PIXELS, CRGB::Black);
     counterended = false;
     counterhasended = false;
