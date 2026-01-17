@@ -227,7 +227,7 @@ void lightStripTrafficAdvisor() {
     counterhasended = false;
 	}
 
-  if(fourcounter >= NUM_PIXELS-1){
+  if(fourcounter >= NUM_PIXELS){
     leds[fourcounter-1] = CRGB::Black;
     fourcounter = 1;
     leds[NUM_PIXELS-1] = CRGB::Black;
@@ -235,7 +235,7 @@ void lightStripTrafficAdvisor() {
     leds[NUM_PIXELS-3] = CRGB::Black;
   }
 
-  if(fithcounter >= NUM_PIXELS-1){
+  if(fithcounter >= NUM_PIXELS){
     leds[fithcounter-1] = CRGB::Black;
     fithcounter = 1;
     leds[NUM_PIXELS-1] = CRGB::Black;
@@ -243,7 +243,7 @@ void lightStripTrafficAdvisor() {
     leds[NUM_PIXELS-3] = CRGB::Black;
   }
 
-  if(scndcounter >= NUM_PIXELS-1){
+  if(scndcounter >= NUM_PIXELS){
     leds[scndcounter-1] = CRGB::Black;
     scndcounter = 1;
     leds[NUM_PIXELS-1] = CRGB::Black;
@@ -251,7 +251,7 @@ void lightStripTrafficAdvisor() {
     leds[NUM_PIXELS-3] = CRGB::Black;
   }
 
-  if(thrdcounter >= NUM_PIXELS-1){
+  if(thrdcounter >= NUM_PIXELS){
     leds[thrdcounter-1] = CRGB::Black;
     thrdcounter = 1;
     leds[NUM_PIXELS-1] = CRGB::Black;
@@ -259,7 +259,7 @@ void lightStripTrafficAdvisor() {
     leds[NUM_PIXELS-3] = CRGB::Black;
   }
 
-  if(counter >= NUM_PIXELS-1){
+  if(counter >= NUM_PIXELS){
     leds[counter-1] = CRGB::Black;
     counter = 1;
     leds[NUM_PIXELS-1] = CRGB::Black;
