@@ -17,11 +17,11 @@ WebPage webPage;
 
 // LED array and other variables
 CRGB leds[NUM_PIXELS];
-int counter = 20;
-int scndcounter = 40;
-int thrdcounter = 81;
-int fourcounter = 101;
-int sevencounter = 121;
+int counter = 0;
+int scndcounter = 36;
+int thrdcounter = 72;
+int fourcounter = 108;
+int fithcounter = 144;
 
 // scale a reference index (designed for 144 pixels) to the current NUM_PIXELS
 static int scaled_index(int referenceIndex) {
@@ -174,11 +174,11 @@ void lightStripTrafficAdvisor() {
     leds[counter-2] = CRGB::Black;
   }
 
-  if(sevencounter < 2) {
+  if(fithcounter < 2) {
     leds[NUM_PIXELS-1] = CRGB::Black;
   }
   else{
-    leds[sevencounter-2] = CRGB::Black;
+    leds[fithcounter-2] = CRGB::Black;
   }
 
   if(scndcounter < 2){
@@ -209,8 +209,8 @@ void lightStripTrafficAdvisor() {
     leds[scndcounter-1] = CRGB::OrangeRed;
     leds[thrdcounter] = CRGB::OrangeRed;
     leds[fourcounter] = CRGB::OrangeRed;
-    leds[sevencounter] = CRGB::OrangeRed;
-    leds[sevencounter-1] = CRGB::OrangeRed;
+    leds[fithcounter] = CRGB::OrangeRed;
+    leds[fithcounter-1] = CRGB::OrangeRed;
     FastLED.setBrightness(DynamicData::get().brightness);
     counterended= false;
   }
@@ -223,7 +223,7 @@ void lightStripTrafficAdvisor() {
     scndcounter++;
     thrdcounter++;
     fourcounter++;
-    sevencounter++;
+    fithcounter++;
     counterhasended = false;
 	}
 
@@ -235,9 +235,9 @@ void lightStripTrafficAdvisor() {
     leds[NUM_PIXELS-3] = CRGB::Black;
   }
 
-  if(sevencounter >= NUM_PIXELS-1){
-    leds[sevencounter-1] = CRGB::Black;
-    sevencounter = 1;
+  if(fithcounter >= NUM_PIXELS-1){
+    leds[fithcounter-1] = CRGB::Black;
+    fithcounter = 1;
     leds[NUM_PIXELS-1] = CRGB::Black;
     leds[NUM_PIXELS-2] = CRGB::Black;
     leds[NUM_PIXELS-3] = CRGB::Black;
@@ -271,8 +271,8 @@ void lightStripTrafficAdvisor() {
 void warpCoreMode() {
   leds[counter-1] = CRGB::Black;
   leds[counter] = CRGB(DynamicData::get().red, DynamicData::get().green, DynamicData::get().blue);
-  leds[sevencounter-1] = CRGB::Black;
-  leds[sevencounter] = CRGB(DynamicData::get().red, DynamicData::get().green, DynamicData::get().blue);
+  leds[fithcounter-1] = CRGB::Black;
+  leds[fithcounter] = CRGB(DynamicData::get().red, DynamicData::get().green, DynamicData::get().blue);
   leds[thrdcounter-1] = CRGB::Black;
   leds[thrdcounter] = CRGB(DynamicData::get().red, DynamicData::get().green, DynamicData::get().blue);
   leds[fourcounter-1] = CRGB::Black;
@@ -283,7 +283,7 @@ void warpCoreMode() {
   FastLED.show();
   if(counterended) {
     counter++;
-    sevencounter++;
+    fithcounter++;
     thrdcounter++;
     fourcounter++;
     counterended = false;
@@ -300,9 +300,9 @@ void warpCoreMode() {
     counter = 1;
   }
 
-  if(sevencounter > NUM_PIXELS-1) {
-    leds[sevencounter-1] = CRGB::Black;
-    sevencounter = 1;
+  if(fithcounter > NUM_PIXELS-1) {
+    leds[fithcounter-1] = CRGB::Black;
+    fithcounter = 1;
   }
   if(thrdcounter > NUM_PIXELS-1) {
     leds[thrdcounter-1] = CRGB::Black;
