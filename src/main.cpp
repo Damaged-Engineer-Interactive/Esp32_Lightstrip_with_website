@@ -18,30 +18,31 @@ WebPage webPage;
 // LED array and other variables
 CRGB leds[NUM_PIXELS];
 int counter = 20;
-int scndcounter = 80;
-int thrdcounter = 120;
-int fourcounter = 40;
-int sevencounter = 60;
-//test start
- // scale a reference index (designed for 144 pixels) to the current NUM_PIXELS
+int scndcounter = 40;
+int thrdcounter = 61;
+int fourcounter = 81;
+int sevencounter = 101;
+
+// scale a reference index (designed for 144 pixels) to the current NUM_PIXELS
 static int scaled_index(int referenceIndex) {
-  const int base = 144; // original reference length
-  int v = (NUM_PIXELS * referenceIndex + base/2) / base;
-  if (v < 1) v = 1;
-  if (v > NUM_PIXELS - 1) v = NUM_PIXELS - 1;
-  return v;
+const int base = 144; // original reference length
+int v = (NUM_PIXELS * referenceIndex + base/2) / base;
+if (v < 1) v = 1;
+if (v > NUM_PIXELS - 1) v = NUM_PIXELS - 1;
+return v;
 }
 
 int c11 = scaled_index(20);
-int c12 = scaled_index(80);
-int c13 = scaled_index(120);
-int c14 = scaled_index(40);
-int c17 = scaled_index(60);
-int c18 = scaled_index(100);
+int c12 = scaled_index(40);
+int c13 = scaled_index(60);
+int c14 = scaled_index(84);
+int c17 = scaled_index(104);
+int c18 = scaled_index(124);
+//scaling ended
+
 
 //Light variables (setup for the scenes)
 int randomNum = 0;
-int dirtybit = NUM_PIXELS-2;
 int endcounter = 0;
 int secondEndTimer = 0;
 int oldScene = 0;
@@ -229,31 +230,41 @@ void lightStripTrafficAdvisor() {
   if(fourcounter >= NUM_PIXELS-1){
     leds[fourcounter-1] = CRGB::Black;
     fourcounter = 1;
-    leds[dirtybit] = CRGB::Black;
+    leds[NUM_PIXELS-1] = CRGB::Black;
+    leds[NUM_PIXELS-2] = CRGB::Black;
+    leds[NUM_PIXELS-3] = CRGB::Black;
   }
 
   if(sevencounter >= NUM_PIXELS-1){
     leds[sevencounter-1] = CRGB::Black;
     sevencounter = 1;
-    leds[dirtybit] = CRGB::Black;
+    leds[NUM_PIXELS-1] = CRGB::Black;
+    leds[NUM_PIXELS-2] = CRGB::Black;
+    leds[NUM_PIXELS-3] = CRGB::Black;
   }
 
   if(scndcounter >= NUM_PIXELS-1){
     leds[scndcounter-1] = CRGB::Black;
     scndcounter = 1;
-    leds[dirtybit] = CRGB::Black;
+    leds[NUM_PIXELS-1] = CRGB::Black;
+    leds[NUM_PIXELS-2] = CRGB::Black;
+    leds[NUM_PIXELS-3] = CRGB::Black;
   }
 
   if(thrdcounter >= NUM_PIXELS-1){
     leds[thrdcounter-1] = CRGB::Black;
     thrdcounter = 1;
-    leds[dirtybit] = CRGB::Black;
+    leds[NUM_PIXELS-1] = CRGB::Black;
+    leds[NUM_PIXELS-2] = CRGB::Black;
+    leds[NUM_PIXELS-3] = CRGB::Black;
   }
 
   if(counter >= NUM_PIXELS-1){
     leds[counter-1] = CRGB::Black;
     counter = 1;
-    leds[dirtybit] = CRGB::Black;
+    leds[NUM_PIXELS-1] = CRGB::Black;
+    leds[NUM_PIXELS-2] = CRGB::Black;
+    leds[NUM_PIXELS-3] = CRGB::Black;
   } 
 }
 
@@ -679,6 +690,16 @@ void SmoothHueChange() {
 void loop() {
   checkNetworkSet();
   webPage.loop();
+
+  if (NUM_PIXELS != 144) {
+    c11 = 20;
+    c12 = 40;
+    c13 = 60;
+    c14 = 81;
+    c17 = 101;
+    c18 = 121;
+  }
+
   if(oldScene != DynamicData::get().scene) {
     offline();
     endcounter = 0;
