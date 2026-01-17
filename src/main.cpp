@@ -23,9 +23,8 @@ int thrdcounter = 120;
 int fourcounter = 40;
 int sevencounter = 60;
 //test start
-// scale a reference index (designed for 144 pixels) to the current NUM_PIXELS
+ // scale a reference index (designed for 144 pixels) to the current NUM_PIXELS
 static int scaled_index(int referenceIndex) {
-  // Use integer math with rounding: (NUM_PIXELS * reference + base/2) / base
   const int base = 144; // original reference length
   int v = (NUM_PIXELS * referenceIndex + base/2) / base;
   if (v < 1) v = 1;
@@ -659,6 +658,23 @@ void FarlightsHeadLight(){
   FastLED.show();
 }
 
+void SmoothHueChange() {
+  static int hue = 0;
+  fill_solid(leds, NUM_PIXELS, CHSV(hue, DynamicData::get().brightness, 255));
+  FastLED.show();
+  FastLED.setBrightness(DynamicData::get().brightness);
+  counter++;
+
+  if (counter >= DynamicData::get().waittime) {
+    hue += 5;
+    counterended = true;
+    counter = 0;
+  }
+  if (counterended) {
+    counterended = false;
+    hue++;
+  }
+}
 /* http://192.168.54.147/change?scene=0&red=0&green=0&blue=0&waittime=2&brightness=150 Ref. in README.md && scenes esp32.txt */
 void loop() {
   checkNetworkSet();
@@ -747,6 +763,10 @@ void loop() {
 
   case 18:
     HazardLightFast();
+    break;
+
+  case 19:
+    SmoothHueChange();
     break;
 
   default:
