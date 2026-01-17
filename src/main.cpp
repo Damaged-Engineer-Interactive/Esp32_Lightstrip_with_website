@@ -19,9 +19,9 @@ WebPage webPage;
 CRGB leds[NUM_PIXELS];
 int counter = 20;
 int scndcounter = 40;
-int thrdcounter = 61;
-int fourcounter = 81;
-int sevencounter = 101;
+int thrdcounter = 81;
+int fourcounter = 101;
+int sevencounter = 121;
 
 // scale a reference index (designed for 144 pixels) to the current NUM_PIXELS
 static int scaled_index(int referenceIndex) {
