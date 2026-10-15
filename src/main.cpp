@@ -673,7 +673,6 @@ void SmoothHueChange() {
   static int hue = 0;
   fill_solid(leds, NUM_PIXELS, CHSV(hue, DynamicData::get().brightness, 255));
   FastLED.show();
-  FastLED.setBrightness(DynamicData::get().brightness);
   counter++;
 
   if (counter >= DynamicData::get().waittime) {
@@ -691,21 +690,13 @@ void loop() {
   checkNetworkSet();
   webPage.loop();
 
-  if (NUM_PIXELS != 144) {
-    c11 = 20;
-    c12 = 40;
-    c13 = 60;
-    c14 = 81;
-    c17 = 101;
-    c18 = 121;
-  }
-
+    oldScene = DynamicData::get().scene;
   if(oldScene != DynamicData::get().scene) {
     offline();
     endcounter = 0;
     phase1 = true;
   }
-  oldScene = DynamicData::get().scene;
+
   switch (DynamicData::get().scene)
   {
 
