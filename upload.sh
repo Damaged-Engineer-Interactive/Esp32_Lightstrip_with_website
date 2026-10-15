@@ -29,13 +29,19 @@ if [ ! -f "$firmware" ]; then
 fi
 
 printf 'Uploading %s to %s/update...\n' "$firmware" "${device_url%/}"
+curl_status=0
 response=$(curl --silent --show-error --fail \
     --form "update=@$firmware;type=application/octet-stream" \
-    "${device_url%/}/update")
+    "${device_url%/}/update") || curl_status=$?
 
 if [ "$response" != "OK" ]; then
-    printf 'Device returned an unexpected response: %s\n' "$response" >&2
+    printf 'Upload failed (curl exit %s; device response: %s)\n' \
+        "$curl_status" "$response" >&2
     exit 1
+fi
+
+if [ "$curl_status" -ne 0 ]; then
+    printf '%s\n' "Device returned OK before closing the connection to reboot."
 fi
 
 printf '%s\n' "Upload successful; the ESP32 is rebooting."

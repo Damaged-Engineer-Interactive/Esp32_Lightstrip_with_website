@@ -17,11 +17,11 @@ WebPage webPage;
 
 // LED array and other variables
 CRGB leds[NUM_PIXELS];
-int counter = 0;
+int counter = 1;
 int scndcounter = 36;
 int thrdcounter = 72;
 int fourcounter = 108;
-int fithcounter = 144;
+int fithcounter = 143;
 
 // scale a reference index (designed for 144 pixels) to the current NUM_PIXELS
 static int scaled_index(int referenceIndex) {
