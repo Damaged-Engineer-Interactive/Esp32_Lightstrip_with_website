@@ -690,12 +690,15 @@ void loop() {
   checkNetworkSet();
   webPage.loop();
 
-    oldScene = DynamicData::get().scene;
+  
   if(oldScene != DynamicData::get().scene) {
     offline();
     endcounter = 0;
     phase1 = true;
   }
+
+  oldScene = DynamicData::get().scene;
+  
 
   switch (DynamicData::get().scene)
   {
