@@ -1,24 +1,51 @@
-# Esp32_Lightstrip_with_website
- This allows you to control a 144 (value adjustable) lights Lightstrip with different scenes as well as a website for easy access to the ESP32!
+# ESP32 Lightstrip with Website
 
+This project controls a programmable LED light strip (default: 144 LEDs, configurable via `NUM_PIXELS`) and exposes the controls through a built-in web interface on the ESP32.
 
-## This is using the some liberaries:
-These can be found in the src folder and everything is a liberary except the "main.cpp" wich is the main file. 
-Feel free to alter the webpages etc to your liking just make sure not to break anything!
+## Project layout
 
-# The way its set up:
-- Name of the scene (notes) (number of scene on the website)
+- `src/main.cpp` contains the scene logic and control loop.
+- `src/WebPage.h` builds the web UI.
+- `src/NVMData.h` and `src/DynamicData.h` store settings and scene data.
+- The light strip is driven with FastLED.
 
-###  These are the scene we have:
-0. trafficAdvisorWithFLashers ((blue and red flasher) (going to the right)) 
-1. lightStripTrafficAdvisor (without the flahsers in teh middle this time, going to the right) 
-2. twoPhaseLights (red and blue, without the traffic advisor) 
-3. warpCoreMode (custom color and wait time) 
-4. lighting (makes some LEDs a custom color) 
-5. twoPhaseLightsCustomColor (makes the two phase lights light up in the color and jump between two spaces (black on unused)) 
-6. randomFlashingLights (alternates between random spaces (0-143) and lights them in a preset color. Cusom waittime is also implimented!)
-7. FullOnBlueBlackFlasher (Alternates between red and Blue over 77 pixels each)
-8. FullOnCustomBlackFlasher (same as the one before but it takes a custom color)
-9. strobo (turns on and off (white) in the waittime provided)
+## Scene list
 
-### everything over *the last number of the cases* will turn it "off" (and that is also used as a transition to avoid LEDs getting stuck on)
+The scene number is the value sent through the web interface or query string, for example:
+
+`/change?scene=0&red=0&green=0&blue=0&waittime=2&brightness=150`
+
+The implemented scenes are:
+
+0. `lightStripTrafficAdvisor` — moving orange-red traffic-advisor pattern across the strip
+1. `twoPhaseLights` — alternating red/blue half-strip phases
+2. `warpCoreMode` — four moving color points cycling through the strip with custom RGB values
+3. `twoPhaseLightCustomColor` — custom-color alternating blocks with black gaps
+4. `FullOnBlueBlackFlasher` — blue/black flashing pattern split across the strip
+5. `FullOnCustomBlackFlasher` — custom color/black flashing pattern split across the strip
+6. `allOn` — all LEDs on in the selected custom color
+7. `RandomFlashingLights` — random LED flashes in the selected custom color
+8. `strobo` — full white strobe on/off effect
+9. `BlinkingLights` — full-strip blink using the selected custom color
+10. `IndicatorRight` — right turn indicator in orange-red
+11. `IndicatorLeft` — left turn indicator in orange-red
+12. `HazardLight` — hazard flashing using orange-red on left and right sections
+13. `IndicatorRightHeadlight` — right indicator with white headlight state
+14. `IndicatorLeftHeadlight` — left indicator with white headlight state
+15. `HazardHeadLight` — hazard flashing with orange-red and white
+16. `HeadlightNormal` — constant white headlight
+17. `FarlightsHeadLight` — constant brighter white headlight
+18. `HazardLightFast` — faster hazard flashing pattern
+19. `SmoothHueChange` — smooth hue sweep across the strip
+
+## Off / unknown scene behavior
+
+Any scene number outside the valid range above, or an unrecognized value, falls through to the default action, which turns the LEDs off.
+
+This is used as a safe fallback and prevents LEDs from remaining stuck on at the wrong color.
+
+## Notes
+
+- `brightness` and `waittime` are adjustable in the app and affect the scene behavior.
+- `red`, `green`, and `blue` values are used for custom-color scenes.
+- The strip length is currently set to 144 LEDs by default, but can be changed in `src/main.cpp` by editing `NUM_PIXELS`.
