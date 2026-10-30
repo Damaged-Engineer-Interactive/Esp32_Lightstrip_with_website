@@ -38,11 +38,9 @@ The implemented scenes are:
 18. `HazardLightFast` — faster hazard flashing pattern
 19. `SmoothHueChange` — smooth hue sweep across the strip
 
-## Off / unknown scene behavior
+## Other Values
 
-Any scene number outside the valid range above, or an unrecognized value, falls through to the default action, which turns the LEDs off.
-
-This is used as a safe fallback and prevents LEDs from remaining stuck on at the wrong color.
+Any scene number outside the range falls back to offine() which is also used for the transitions to avoid stuck LEDs
 
 ## Notes
 

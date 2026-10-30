@@ -119,7 +119,7 @@ void WebPage::handleNotFound() {
     String message = GenHeader(3, true);
     message += "<p>404: I'm just as confused as you are. How did you get here?</p>";
     message += GenFooter();
-    server.send(200, "text/html", message);
+    server.send(404, "text/html", message);
 }
 
 void WebPage::handleChange() {
@@ -142,7 +142,7 @@ void WebPage::handleChange() {
     }
     else if (server.argName(i) == "scene") {
       DynamicData::get().scene =  server.arg(i).toInt();
-      message = "I dont exist";
+      message = "If you see this, something isnt working right... This should disappear soon. I hope. Oh no you are still reading? Shit. Whatever, You doing anything fun later? No? me neither. I guess we can just sit here and stare at the screen together. I certainly will, cant change that. Well this is now getting akward. I could keep going, but thats work and I dont wanna work, so lets wait.";
     }
     else if (server.argName(i) == "red") {
       int redValue = server.arg(i).toInt();
